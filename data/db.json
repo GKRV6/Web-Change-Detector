@@ -1,0 +1,326 @@
+{
+  "monitors": [
+    {
+      "id": "mon-1792004923047",
+      "name": "Example Domain Test",
+      "url": "https://example.com",
+      "intervalMinutes": 15,
+      "watchSelector": "h1",
+      "ignoreSelectors": [],
+      "noiseRegexes": [],
+      "sensitivity": 5,
+      "keywordAlerts": [],
+      "numberSelector": "",
+      "status": "OK",
+      "statusReason": "Change detected (v1, 0% diff)",
+      "lastChecked": "2026-10-14T19:08:46.776Z",
+      "lastChanged": "2026-10-14T19:08:46.776Z",
+      "nextCheck": "2026-10-14T19:23:11.774Z",
+      "responseTimeMs": 2969,
+      "active": true,
+      "consecutiveFailures": 0,
+      "tags": [],
+      "webhookUrl": "",
+      "email": ""
+    },
+    {
+      "id": "mon-1",
+      "name": "Hacker News Top Stories",
+      "url": "https://news.ycombinator.com",
+      "intervalMinutes": 15,
+      "watchSelector": ".athing",
+      "ignoreSelectors": [
+        ".score",
+        ".age",
+        ".subline"
+      ],
+      "noiseRegexes": [
+        "\\d+\\s+points?",
+        "\\d+\\s+comments?",
+        "\\d+\\s+(minutes?|hours?|days?)\\s+ago"
+      ],
+      "sensitivity": 5,
+      "keywordAlerts": [
+        "AI",
+        "Release",
+        "Show HN",
+        "Launch"
+      ],
+      "numberSelector": "",
+      "status": "OK",
+      "statusReason": "Normal operations. 30 story items monitored.",
+      "lastChecked": "2026-10-14T18:57:01.556Z",
+      "lastChanged": "2026-10-14T18:19:01.557Z",
+      "nextCheck": "2026-10-14T19:12:01.557Z",
+      "responseTimeMs": 342,
+      "active": true,
+      "consecutiveFailures": 0,
+      "tags": [
+        "Tech",
+        "Headlines"
+      ],
+      "webhookUrl": "https://discord.com/api/webhooks/demo",
+      "email": "alerts@horizonx.local"
+    },
+    {
+      "id": "mon-2",
+      "name": "GitHub System Status",
+      "url": "https://www.githubstatus.com",
+      "intervalMinutes": 30,
+      "watchSelector": ".page-status",
+      "ignoreSelectors": [
+        "time",
+        ".color-secondary"
+      ],
+      "noiseRegexes": [
+        "Last updated.*",
+        "UTC"
+      ],
+      "sensitivity": 0,
+      "keywordAlerts": [
+        "Degraded",
+        "Major Outage",
+        "Incident"
+      ],
+      "numberSelector": "",
+      "status": "OK",
+      "statusReason": "All Systems Operational.",
+      "lastChecked": "2026-10-14T18:49:01.557Z",
+      "lastChanged": "2026-10-14T16:01:01.557Z",
+      "nextCheck": "2026-10-14T19:19:01.557Z",
+      "responseTimeMs": 215,
+      "active": true,
+      "consecutiveFailures": 0,
+      "tags": [
+        "DevOps",
+        "Status"
+      ],
+      "webhookUrl": "",
+      "email": "devops-team@company.internal"
+    },
+    {
+      "id": "mon-3",
+      "name": "SpaceX Starship Updates",
+      "url": "https://www.spacex.com/vehicles/starship/",
+      "intervalMinutes": 60,
+      "watchSelector": "main section",
+      "ignoreSelectors": [
+        "footer",
+        ".cookie-notice"
+      ],
+      "noiseRegexes": [
+        "copyright \\d{4}"
+      ],
+      "sensitivity": 10,
+      "keywordAlerts": [
+        "Flight 7",
+        "Static Fire",
+        "Launch Window"
+      ],
+      "numberSelector": "",
+      "status": "OK",
+      "statusReason": "Starship integrated flight test countdown monitored.",
+      "lastChecked": "2026-10-14T18:36:01.557Z",
+      "lastChanged": "2026-10-14T04:41:01.557Z",
+      "nextCheck": "2026-10-14T19:36:01.557Z",
+      "responseTimeMs": 512,
+      "active": true,
+      "consecutiveFailures": 0,
+      "tags": [
+        "Space",
+        "Starship"
+      ],
+      "webhookUrl": "",
+      "email": ""
+    },
+    {
+      "id": "mon-4",
+      "name": "GPU Pricing Tracker (RTX 5090)",
+      "url": "https://example.com/store/gpu-5090",
+      "intervalMinutes": 15,
+      "watchSelector": ".product-price-val",
+      "ignoreSelectors": [
+        ".viewers-watching",
+        ".stock-counter"
+      ],
+      "noiseRegexes": [],
+      "sensitivity": 0,
+      "keywordAlerts": [
+        "In Stock"
+      ],
+      "numberSelector": ".product-price-val",
+      "status": "OK",
+      "statusReason": "Tracking numeric price fluctuation over time.",
+      "lastChecked": "2026-10-14T18:58:01.557Z",
+      "lastChanged": "2026-10-14T18:26:01.557Z",
+      "nextCheck": "2026-10-14T19:13:01.557Z",
+      "responseTimeMs": 180,
+      "active": true,
+      "consecutiveFailures": 0,
+      "tags": [
+        "E-Commerce",
+        "Hardware",
+        "Price"
+      ],
+      "webhookUrl": "",
+      "email": ""
+    },
+    {
+      "id": "mon-5",
+      "name": "Cloudflare Protected Target (Demo Anti-Bot Guard)",
+      "url": "https://challenge-demo.cloudflare.com",
+      "intervalMinutes": 60,
+      "watchSelector": "body",
+      "ignoreSelectors": [],
+      "noiseRegexes": [],
+      "sensitivity": 10,
+      "keywordAlerts": [],
+      "numberSelector": "",
+      "status": "BLOCKED",
+      "statusReason": "Cloudflare Turnstile challenge wall detected (403/503). Change alert suppressed.",
+      "lastChecked": "2026-10-14T18:53:01.557Z",
+      "lastChanged": "2026-10-14T14:01:01.557Z",
+      "nextCheck": "2026-10-14T19:53:01.557Z",
+      "responseTimeMs": 780,
+      "active": true,
+      "consecutiveFailures": 2,
+      "tags": [
+        "Security",
+        "CAPTCHA"
+      ],
+      "webhookUrl": "",
+      "email": ""
+    }
+  ],
+  "snapshots": [
+    {
+      "id": "snap-mon-1792004923047-v1",
+      "monitorId": "mon-1792004923047",
+      "version": 1,
+      "timestamp": "2026-10-14T19:08:46.776Z",
+      "contentHash": "6a2f988e0a96e32fe616c9dd9a410af179b5bb482cfb8883063ec6b3608c7a61",
+      "textSnapshot": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.\n\nهذا النطاق مُخصص للاستخدام في أمثلة التوثيق دون الحاجة إلى إذن. هذه ليست خدمة، يُرجى تجنب الاعتماد عليها لأغراض الاختبار والمراقبة.\n\n该域名仅用于文档示例，无需获得许可。这并非一项服务，请勿将其用于测试和监控目的。\n\nL’usage de ce domaine est réservé à des exemples de documentation, sans autorisation préalable. Il ne s’agit pas d’un service ; son utilisation à des fins de test ou de surveillance est à éviter.\n\nДанный домен предназначен для использования в примерах документации без необходимости получения предварительного разрешения. Это не сервис; не рекомендуется его использование для тестирования и мониторинга.\n\nEste dominio está destinado al uso en ejemplos de documentación sin necesidad de permiso. Esto no es un servicio; evitar utilizarlo para realizar pruebas o monitoreos.\n\nLearn more",
+      "cleanedText": "This domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.\nهذا النطاق مُخصص للاستخدام في أمثلة التوثيق دون الحاجة إلى إذن. هذه ليست خدمة، يُرجى تجنب الاعتماد عليها لأغراض الاختبار والمراقبة.\n该域名仅用于文档示例，无需获得许可。这并非一项服务，请勿将其用于测试和监控目的。\nL’usage de ce domaine est réservé à des exemples de documentation, sans autorisation préalable. Il ne s’agit pas d’un service ; son utilisation à des fins de test ou de surveillance est à éviter.\nДанный домен предназначен для использования в примерах документации без необходимости получения предварительного разрешения. Это не сервис; не рекомендуется его использование для тестирования и мониторинга.\nEste dominio está destinado al uso en ejemplos de documentación sin necesidad de permiso. Esto no es un servicio; evitar utilizarlo para realizar pruebas o monitoreos.\nLearn more",
+      "screenshotUrl": "/screenshots/snap_mon-1792004923047_1792004923050.png",
+      "status": "OK",
+      "changePercent": 0,
+      "aiSummary": "Initial baseline snapshot captured. Monitoring active.",
+      "extractedNumber": null
+    },
+    {
+      "id": "snap-1-v1",
+      "monitorId": "mon-1",
+      "version": 1,
+      "timestamp": "2026-10-14T17:01:01.557Z",
+      "contentHash": "4c7182ec838a1a9e52e42b2600d8b584e03d3c11f77d5440d99fae5bfa780d09",
+      "textSnapshot": "1. OpenAI reveals Strawberry reasoning model benchmarks\n2. Show HN: Fast SQLite search engine in Rust\n3. PostgreSQL 17 Officially Released\n4. Why we migrated from Kubernetes to Bare Metal\n5. Linux 6.12 Kernel Updates",
+      "cleanedText": "OpenAI reveals Strawberry reasoning model benchmarks Show HN Fast SQLite search engine in Rust PostgreSQL 17 Officially Released Why we migrated from Kubernetes to Bare Metal Linux 6.12 Kernel Updates",
+      "screenshotUrl": "/screenshots/mock-hn-v1.png",
+      "status": "OK",
+      "changePercent": 0,
+      "aiSummary": "Baseline initial snapshot captured with top 5 stories.",
+      "extractedNumber": null
+    },
+    {
+      "id": "snap-1-v2",
+      "monitorId": "mon-1",
+      "version": 2,
+      "timestamp": "2026-10-14T18:19:01.557Z",
+      "contentHash": "a9108cb90fa9601d8bbd4c679a834e941198642a86dbf8e32c748bf4921f0081",
+      "textSnapshot": "1. DeepSeek releases Open-Source V3 Model with MoE Architecture\n2. Show HN: Fast SQLite search engine in Rust\n3. PostgreSQL 17 Officially Released\n4. Anthropic Claude 3.5 Sonnet Updated Benchmarks\n5. Linux 6.12 Kernel Updates",
+      "cleanedText": "DeepSeek releases Open-Source V3 Model with MoE Architecture Show HN Fast SQLite search engine in Rust PostgreSQL 17 Officially Released Anthropic Claude 3.5 Sonnet Updated Benchmarks Linux 6.12 Kernel Updates",
+      "screenshotUrl": "/screenshots/mock-hn-v2.png",
+      "status": "OK",
+      "changePercent": 38.5,
+      "aiSummary": "2 new frontpage stories: DeepSeek V3 release and Claude 3.5 Sonnet updates replaced Strawberry and Bare metal stories.",
+      "extractedNumber": null
+    },
+    {
+      "id": "snap-4-v1",
+      "monitorId": "mon-4",
+      "version": 1,
+      "timestamp": "2026-10-14T16:01:01.557Z",
+      "contentHash": "f320984a1e94819dfb40a823efb089cfa291bc9e47209148dbe480391ab9c832",
+      "textSnapshot": "NVIDIA GeForce RTX 5090 Founders Edition\nPrice: $1,999.00\nAvailability: Out of Stock\nShips within 24 hours when restocked.",
+      "cleanedText": "NVIDIA GeForce RTX 5090 Founders Edition Price 1999.00 Availability Out of Stock Ships within 24 hours when restocked.",
+      "screenshotUrl": "/screenshots/mock-gpu-v1.png",
+      "status": "OK",
+      "changePercent": 0,
+      "aiSummary": "Baseline price recorded at $1,999.00 (Out of Stock).",
+      "extractedNumber": 1999
+    },
+    {
+      "id": "snap-4-v2",
+      "monitorId": "mon-4",
+      "version": 2,
+      "timestamp": "2026-10-14T17:26:01.557Z",
+      "contentHash": "820d8bb091bc840a4e723049b1fa8902c384918ef94b8e219714890cbe0a9143",
+      "textSnapshot": "NVIDIA GeForce RTX 5090 Founders Edition\nPrice: $1,899.00\nAvailability: Pre-order Available\nShips within 24 hours when restocked.",
+      "cleanedText": "NVIDIA GeForce RTX 5090 Founders Edition Price 1899.00 Availability Pre-order Available Ships within 24 hours when restocked.",
+      "screenshotUrl": "/screenshots/mock-gpu-v2.png",
+      "status": "OK",
+      "changePercent": 12,
+      "aiSummary": "Price discounted by $100 (-5.0%) from $1,999 to $1,899; Pre-order now open.",
+      "extractedNumber": 1899
+    },
+    {
+      "id": "snap-4-v3",
+      "monitorId": "mon-4",
+      "version": 3,
+      "timestamp": "2026-10-14T18:26:01.557Z",
+      "contentHash": "09e8432a7bc4092189dbe7189fa80293c847120938472918472093847129048a",
+      "textSnapshot": "NVIDIA GeForce RTX 5090 Founders Edition\nPrice: $1,799.00\nAvailability: In Stock\nShips within 24 hours when restocked.",
+      "cleanedText": "NVIDIA GeForce RTX 5090 Founders Edition Price 1799.00 Availability In Stock Ships within 24 hours when restocked.",
+      "screenshotUrl": "/screenshots/mock-gpu-v3.png",
+      "status": "OK",
+      "changePercent": 14.5,
+      "aiSummary": "Price dropped further by $100 to $1,799.00 (In Stock keyword triggered!).",
+      "extractedNumber": 1799
+    }
+  ],
+  "alerts": [
+    {
+      "id": "alert-1",
+      "monitorId": "mon-1",
+      "monitorName": "Hacker News Top Stories",
+      "timestamp": "2026-10-14T18:19:01.557Z",
+      "type": "CONTENT_CHANGE",
+      "title": "Content Change Detected on Hacker News",
+      "summary": "38.5% text variation detected. DeepSeek V3 release story broke onto top page.",
+      "diffPercent": 38.5,
+      "sentTo": "discord-webhook, alerts@horizonx.local",
+      "delivered": true
+    },
+    {
+      "id": "alert-2",
+      "monitorId": "mon-4",
+      "monitorName": "GPU Pricing Tracker (RTX 5090)",
+      "timestamp": "2026-10-14T18:26:01.557Z",
+      "type": "KEYWORD_TRIGGER",
+      "title": "Keyword Alert: 'In Stock' matched on RTX 5090",
+      "summary": "Price dropped to $1,799.00. Status shifted to 'In Stock'.",
+      "diffPercent": 14.5,
+      "sentTo": "discord-webhook",
+      "delivered": true
+    },
+    {
+      "id": "alert-3",
+      "monitorId": "mon-5",
+      "monitorName": "Cloudflare Protected Target",
+      "timestamp": "2026-10-14T18:53:01.557Z",
+      "type": "ANTI_BOT_BLOCK",
+      "title": "Target Blocked: Cloudflare Turnstile Challenge",
+      "summary": "HTTP 403 / Bot Challenge encountered. Content diffing safely suspended to prevent false alerts.",
+      "diffPercent": 0,
+      "sentTo": "system-audit",
+      "delivered": true
+    }
+  ],
+  "systemMetrics": {
+    "totalChecksPerformed": 1430,
+    "coalescedRequestsSaved": 615,
+    "noiseAlertsSuppressed": 982,
+    "activeMonitorsCount": 5,
+    "domainCooldownQueue": 0
+  }
+}
