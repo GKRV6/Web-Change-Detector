@@ -1,127 +1,115 @@
 import React from 'react'
 import AxonNav from './AxonNav'
-import { YCIcon } from './Icons'
 
-const TEAM = [
-  { name: 'Priya Mehta', role: 'CEO & Co-founder', bg: '#c4b5fd', initials: 'PM', bio: 'Former PM at Stripe. Built the payment automation team that processed $40B+ annually.' },
-  { name: 'James Okafor', role: 'CTO & Co-founder', bg: '#a78bfa', initials: 'JO', bio: 'Previously Staff Engineer at Figma. Led the multiplayer infra rewrite powering 8M+ concurrent users.' },
-  { name: 'Selin Yıldız', role: 'Head of Design', bg: '#7c3aed', initials: 'SY', bio: 'Design lead at Linear. Obsessed with reducing friction between human intent and software action.' },
-  { name: 'David Park', role: 'Head of Growth', bg: '#5b21b6', initials: 'DP', bio: 'Ran growth at Loom from $0 to $50M ARR. Expert in PLG and bottom-up enterprise expansion.' },
-]
+export default function AboutPage({ setPage, onOpenEarlyAccess }) {
+  const VALUES = [
+    {
+      title: 'Dignity in Work',
+      desc: 'Human beings are creative, empathetic problem-solvers. Forcing people to copy-paste between 14 browser tabs 8 hours a day is a misallocation of human potential.',
+    },
+    {
+      title: 'Contextual Intelligence',
+      desc: 'Simple scripts break when a button changes color. True digital workers must understand semantic intent, recover from unexpected edge cases, and self-heal automatically.',
+    },
+    {
+      title: 'Radical Transparency',
+      desc: 'No black boxes. Every autonomous action taken by an Axon worker is fully recorded, visually verifiable, and inspectable by human oversight at all times.',
+    },
+  ]
 
-const VALUES = [
-  { icon: '🧠', title: 'Intelligence first', desc: 'We believe automation should understand context, not just follow scripts.' },
-  { icon: '🎯', title: 'Radical simplicity', desc: "If a non-technical person can't use it, we haven't finished building it yet." },
-  { icon: '🔍', title: 'Relentless transparency', desc: 'Every worker run is observable. No black boxes, no mystery failures.' },
-  { icon: '🤝', title: 'Customer obsession', desc: "We measure success by your team's capacity — not our feature count." },
-]
+  const MILESTONES = [
+    { date: 'Winter 2024', event: 'Founded & backed by Y Combinator (W24 batch).' },
+    { date: 'Spring 2024', event: 'Released first generation self-healing DOM inspection engine.' },
+    { date: 'Summer 2024', event: 'Crossed 1,000,000 automated workflow tasks executed with 99.8% precision.' },
+    { date: 'Today', event: 'Powering automated operations for hundreds of forward-thinking teams globally.' },
+  ]
 
-const TIMELINE = [
-  { year: '2023', event: 'Founded by Priya and James after experiencing the pain of manual browser workflows firsthand at their previous companies.' },
-  { year: 'Jan 2024', event: 'Accepted into Y Combinator W24 batch. Built the first working prototype in 3 weeks.' },
-  { year: 'Mar 2024', event: 'Launched private beta to 50 teams. First customer: a fintech firm automating 1,200 daily compliance checks.' },
-  { year: 'Jun 2024', event: 'Seed round closed. Full team assembled. Expanded to 400+ teams on the waitlist.' },
-  { year: 'Today', event: 'Public launch imminent. Join the waitlist and be among the first to deploy your digital workers.' },
-]
-
-export default function AboutPage({ setPage }) {
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(168deg, #f9f6ff 0%, #fdfbff 50%, #f0f4ff 100%)', position: 'relative', overflow: 'hidden' }}>
+    <div className="min-h-screen bg-gradient-to-b from-[#F7F6FC] via-white to-[#F2EFFE] text-[#1B133C] flex flex-col font-sans">
+      <AxonNav activePage="about" setPage={setPage} onOpenEarlyAccess={onOpenEarlyAccess} />
 
-      {/* Blobs */}
-      <div className="axon-blob" style={{ width: 500, height: 500, top: -100, right: -150, background: 'radial-gradient(circle, rgba(167,139,250,0.18) 0%, transparent 68%)' }} />
-      <div className="axon-blob" style={{ width: 400, height: 400, bottom: 80, left: -80, background: 'radial-gradient(circle, rgba(196,165,253,0.15) 0%, transparent 70%)' }} />
-
-      <AxonNav activePage="about" setPage={setPage} />
-
-      <div style={{ maxWidth: 1000, margin: '0 auto', padding: '4rem 24px 6rem', position: 'relative', zIndex: 1 }}>
-
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         {/* Header */}
-        <div className="fade-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <div className="axon-pill" style={{ marginBottom: 20, display: 'inline-flex' }}>Our Story</div>
-          <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', lineHeight: 1.05, letterSpacing: '-0.02em', color: '#1B133C', marginBottom: '1.2rem' }}>
-            We got tired of watching smart people do <em>dumb busywork</em>
-          </h2>
-          <p style={{ maxWidth: 600, margin: '0 auto 1.25rem', fontSize: 15, lineHeight: 1.75, color: 'rgba(27,19,60,0.62)' }}>
-            Axon started because its founders spent years watching talented engineers, analysts, and operators burn hours on repetitive browser tasks that computers should handle. We built the platform we always wished existed.
-          </p>
-          {/* YC badge */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '0.5rem 1rem', borderRadius: 12, background: 'rgba(242,102,37,0.08)', border: '1px solid rgba(242,102,37,0.18)', fontSize: 13, fontWeight: 600, color: '#c2410c' }}>
-            <YCIcon />
-            <span>Y Combinator W24</span>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 rounded-xl border border-[#1B133C]/10 bg-white/70 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#1B133C] mb-4">
+            Our Mission & Purpose
           </div>
-        </div>
-
-        {/* Mission banner */}
-        <div className="fade-up axon-card" style={{ padding: '2.5rem', marginBottom: '4rem', textAlign: 'center', background: 'rgba(27,19,60,0.96)', border: '1px solid rgba(167,139,250,0.25)' }}>
-          <p style={{ fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(1.4rem, 3vw, 2.2rem)', lineHeight: 1.35, color: '#fff', maxWidth: 680, margin: '0 auto', fontStyle: 'italic' }}>
-            "Every minute a person spends on a task a computer could do is a minute stolen from the work only humans can do."
+          <h1 className="font-['Instrument_Serif'] text-4xl sm:text-6xl md:text-7xl leading-[1] tracking-tight text-[#1B133C] mb-6">
+            Eliminating mundane browser toil so teams can build what matters
+          </h1>
+          <p className="text-sm sm:text-base leading-relaxed text-[#1B133C]/70">
+            Axon was founded by engineers and operations veterans who grew frustrated watching brilliant teams squander their best hours on repetitive, mechanical browser workflows.
           </p>
-          <div style={{ marginTop: 20, fontSize: 13, color: 'rgba(255,255,255,0.45)', fontWeight: 500 }}>— Priya Mehta, CEO of Axon</div>
         </div>
 
-        {/* Values */}
-        <div className="fade-up delay-1" style={{ marginBottom: '4rem' }}>
-          <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 28, color: '#1B133C', textAlign: 'center', marginBottom: '2rem' }}>What we believe</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: 16 }}>
-            {VALUES.map(v => (
-              <div key={v.title} className="axon-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-                <div style={{ fontSize: 30, marginBottom: 12 }}>{v.icon}</div>
-                <div style={{ fontWeight: 700, fontSize: 14, color: '#1B133C', marginBottom: 7 }}>{v.title}</div>
-                <div style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(27,19,60,0.58)' }}>{v.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Team */}
-        <div className="fade-up delay-2" style={{ marginBottom: '4rem' }}>
-          <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 28, color: '#1B133C', textAlign: 'center', marginBottom: '2rem' }}>The team</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16 }}>
-            {TEAM.map(member => (
-              <div key={member.name} className="axon-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-                <div style={{ width: 60, height: 60, borderRadius: '50%', background: member.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, fontWeight: 700, color: '#fff', margin: '0 auto 14px', letterSpacing: '0.02em' }}>
-                  {member.initials}
+        {/* Story Section */}
+        <div className="bg-white/70 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-[#1B133C]/10 shadow-sm mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200/60 rounded-lg px-3 py-1 mb-4">
+                <div className="bg-orange-500 rounded w-4 h-4 flex items-center justify-center text-white font-bold text-[10px]">
+                  Y
                 </div>
-                <div style={{ fontWeight: 700, fontSize: 15, color: '#1B133C', marginBottom: 3 }}>{member.name}</div>
-                <div style={{ fontSize: 12.5, fontWeight: 600, color: '#7c3aed', marginBottom: 10, letterSpacing: '0.02em' }}>{member.role}</div>
-                <div style={{ fontSize: 13, lineHeight: 1.6, color: 'rgba(27,19,60,0.58)' }}>{member.bio}</div>
+                <span className="text-xs font-semibold text-orange-950">Backed by Y Combinator</span>
               </div>
-            ))}
+              <h2 className="font-['Instrument_Serif'] text-3xl sm:text-4xl text-[#1B133C] mb-4">
+                The browser is where mundane work goes to hide
+              </h2>
+              <p className="text-xs sm:text-sm leading-relaxed text-[#1B133C]/70 mb-4">
+                Modern work takes place across dozens of disjointed web portals, legacy enterprise software, and third-party dashboards that lack clean APIs. 
+              </p>
+              <p className="text-xs sm:text-sm leading-relaxed text-[#1B133C]/70 mb-6">
+                Axon bridges this gap by deploying digital workers that navigate the web with human-like precision and programmatic reliability.
+              </p>
+              <button
+                onClick={onOpenEarlyAccess}
+                className="rounded-xl bg-[#1B133C] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-opacity cursor-pointer"
+              >
+                Join Our Early Access
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="font-['Instrument_Serif'] text-2xl text-[#1B133C]">Journey & Milestones</h3>
+              <div className="space-y-3 font-sans">
+                {MILESTONES.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 rounded-xl bg-white/50 border border-[#1B133C]/5 flex items-start gap-3"
+                  >
+                    <span className="text-xs font-bold text-orange-600 shrink-0 mt-0.5">
+                      {item.date}
+                    </span>
+                    <span className="text-xs sm:text-sm text-[#1B133C]/80">
+                      {item.event}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Timeline */}
-        <div className="fade-up delay-2" style={{ marginBottom: '4rem' }}>
-          <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 28, color: '#1B133C', marginBottom: '2rem' }}>Our journey</h3>
-          <div style={{ position: 'relative', paddingLeft: 24 }}>
-            {/* Vertical line */}
-            <div style={{ position: 'absolute', left: 7, top: 8, bottom: 8, width: 2, background: 'linear-gradient(180deg, #c4b5fd, #7c3aed)' }} />
-            {TIMELINE.map((t, i) => (
-              <div key={t.year} style={{ position: 'relative', paddingLeft: 28, marginBottom: i < TIMELINE.length - 1 ? '2rem' : 0 }}>
-                <div style={{ position: 'absolute', left: 0, top: 5, width: 14, height: 14, borderRadius: '50%', background: '#7c3aed', border: '2px solid #fff', boxShadow: '0 0 0 2px #7c3aed' }} />
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#7c3aed', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 4 }}>{t.year}</div>
-                <div style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(27,19,60,0.72)' }}>{t.event}</div>
-              </div>
-            ))}
-          </div>
+        {/* Values Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {VALUES.map((val, idx) => (
+            <div
+              key={idx}
+              className="bg-white/70 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-[#1B133C]/10 shadow-sm"
+            >
+              <span className="text-xs font-bold text-[#1B133C]/40 uppercase tracking-wider">
+                Principle 0{idx + 1}
+              </span>
+              <h3 className="font-['Instrument_Serif'] text-2xl text-[#1B133C] mt-2 mb-3">
+                {val.title}
+              </h3>
+              <p className="text-xs sm:text-sm leading-relaxed text-[#1B133C]/70">
+                {val.desc}
+              </p>
+            </div>
+          ))}
         </div>
-
-        {/* CTA */}
-        <div className="fade-up" style={{ textAlign: 'center', padding: '3rem 2rem', borderRadius: 20, background: 'linear-gradient(135deg, rgba(196,181,253,0.25) 0%, rgba(167,139,250,0.12) 100%)', border: '1px solid rgba(124,58,237,0.18)' }}>
-          <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 28, color: '#1B133C', marginBottom: 10 }}>Ready to deploy your first digital worker?</h3>
-          <p style={{ fontSize: 14, color: 'rgba(27,19,60,0.60)', marginBottom: '1.75rem' }}>Join 400+ teams on the waitlist. Free plan available, no credit card required.</p>
-          <button
-            onClick={() => setPage('home')}
-            style={{ borderRadius: 12, background: '#1B133C', color: '#fff', border: 'none', padding: '0.875rem 2rem', fontSize: 15, fontWeight: 600, fontFamily: 'Inter, sans-serif', cursor: 'pointer', boxShadow: '0 4px 24px rgba(124,58,237,0.28)', transition: 'transform 0.2s, box-shadow 0.2s' }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(124,58,237,0.38)' }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(124,58,237,0.28)' }}
-          >
-            Get Early Access →
-          </button>
-        </div>
-
-      </div>
+      </main>
     </div>
   )
 }

@@ -2,11 +2,15 @@
 export default {
   content: [
     "./index.html",
+    "./axon.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
+        axon: {
+          navy: '#1B133C',
+        },
         horizon: {
           950: '#04060A',
           900: '#080C16',
@@ -25,7 +29,9 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace']
+        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
+        serif: ['"Instrument Serif"', 'serif'],
+        'Instrument_Serif': ['"Instrument Serif"', 'serif'],
       },
       boxShadow: {
         'glow-orange': '0 0 25px -3px rgba(255, 122, 41, 0.35)',

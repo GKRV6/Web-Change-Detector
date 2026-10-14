@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
+import AxonApp from './axon/AxonApp';
 import Navbar from './components/Navbar';
 import HeroBanner from './components/HeroBanner';
 import MonitorList from './components/MonitorList';
@@ -12,6 +13,7 @@ import AlertsHub from './components/AlertsHub';
 import { fetchMonitors, fetchQueueStatus } from './api';
 
 export default function App() {
+  const [view, setView] = useState('axon'); // 'axon' is the default landing page
   const [activeTab, setActiveTab] = useState('dashboard');
   const [monitors, setMonitors] = useState([]);
   const [queueMetrics, setQueueMetrics] = useState(null);
@@ -19,18 +21,21 @@ export default function App() {
   const [selectedMonitorForDiff, setSelectedMonitorForDiff] = useState('');
   const [selectedUrlForPicker, setSelectedUrlForPicker] = useState('');
 
-  // Initial load and periodic telemetry polling
+  // Initial load and periodic telemetry polling (only if in change-detector or active)
   useEffect(() => {
-    loadData();
-    const interval = setInterval(loadData, 5000);
-    return () => clearInterval(interval);
-  }, []);
+    if (view === 'change-detector') {
+      loadData();
+      const interval = setInterval(loadData, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [view]);
 
   // Handle URL query parameters (e.g. from Bookmarklet)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const addUrl = params.get('add_url');
     if (addUrl) {
+      setView('change-detector');
       setSelectedUrlForPicker(addUrl);
       setIsAddModalOpen(true);
     }
@@ -42,8 +47,8 @@ export default function App() {
         fetchMonitors(),
         fetchQueueStatus()
       ]);
-      if (monRes.success) setMonitors(monRes.monitors);
-      if (queueRes.success) setQueueMetrics(queueRes);
+      if (monRes?.success) setMonitors(monRes.monitors);
+      if (queueRes?.success) setQueueMetrics(queueRes);
     } catch (e) {
       console.error('Polling error:', e);
     }
@@ -70,9 +75,28 @@ export default function App() {
     setActiveTab('picker');
   };
 
+  // If in Axon landing mode (default), show the Axon landing page
+  if (view === 'axon') {
+    return <AxonApp onOpenChangeDetector={() => setView('change-detector')} />;
+  }
+
+  // Otherwise show the Change Detector dashboard with a return header
   return (
     <div className="min-h-screen bg-horizon-950 text-slate-100 flex flex-col font-sans selection:bg-horizon-orange selection:text-white">
-      
+      {/* Return to Axon bar */}
+      <div className="bg-[#1B133C] text-white/90 text-xs px-4 py-2 border-b border-white/10 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="font-semibold text-white">Axon Platform Companion:</span>
+          <span>Website Change Detector Suite</span>
+        </div>
+        <button
+          onClick={() => setView('axon')}
+          className="bg-white/10 hover:bg-white/20 text-white font-medium px-3 py-1 rounded-md transition-colors cursor-pointer text-xs flex items-center gap-1.5"
+        >
+          <span>← Back to Axon Landing Page</span>
+        </button>
+      </div>
+
       {/* Top Navbar */}
       <Navbar
         activeTab={activeTab}
@@ -148,14 +172,13 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="text-white font-bold">Horizon<span className="text-horizon-orange">X</span></span>
-            <span>— Autonomous Web Change Intelligence</span>
+            <span>— Autonomous Web Change Intelligence for Axon Workers</span>
           </div>
           <div>
             Built with Headless Puppeteer Browser, Dynamic Noise Filter & Request Coalescing Pool
           </div>
         </div>
       </footer>
-
     </div>
   );
 }

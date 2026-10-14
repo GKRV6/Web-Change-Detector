@@ -1,138 +1,152 @@
 import React from 'react'
 import AxonNav from './AxonNav'
-import { CheckIcon } from './Icons'
 
 const FEATURES = [
   {
-    icon: '🤖',
-    title: 'Intelligent Automation',
-    desc: 'Axon workers watch, click, fill, and submit — exactly like a human would, but without fatigue, errors, or vacations.',
-    tags: ['AI-driven', 'Self-healing'],
+    icon: (
+      <svg className="w-6 h-6 text-[#1B133C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+    title: 'Self-Healing Browser Workers',
+    desc: 'Digital workers adapt autonomously to CSS selector shifts, redesigned layouts, and DOM updates without human intervention.',
+    tag: 'Resilient DOM Engine',
   },
   {
-    icon: '🔗',
-    title: 'No-code Workflow Builder',
-    desc: 'Record any browser workflow in minutes. Axon learns the pattern and deploys a digital worker instantly — no engineers needed.',
-    tags: ['Visual editor', 'Instant deploy'],
+    icon: (
+      <svg className="w-6 h-6 text-[#1B133C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+    title: 'Natural Language Automation',
+    desc: 'Describe any repetitive workflow in plain English: "Download supplier invoices every Monday and reconcile them against QuickBooks."',
+    tag: 'Zero Code Required',
   },
   {
-    icon: '📊',
-    title: 'Real-time Observability',
-    desc: 'Every worker run is logged, timestamped, and screenshotted. Full audit trail for compliance and debugging.',
-    tags: ['Audit logs', 'Screenshots'],
+    icon: (
+      <svg className="w-6 h-6 text-[#1B133C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
+    ),
+    title: 'Zero-Credential Exposure',
+    desc: 'Ephemeral headless sandboxes execute logins in isolated HSM-backed vaults. Passwords and tokens never touch plain text.',
+    tag: 'Enterprise Cryptography',
   },
   {
-    icon: '⚡',
-    title: 'Parallel Execution',
-    desc: 'Scale to hundreds of concurrent workers with no infrastructure management. Axon handles the orchestration layer.',
-    tags: ['Horizontally scaled', 'Auto-retry'],
+    icon: (
+      <svg className="w-6 h-6 text-[#1B133C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      </svg>
+    ),
+    title: 'Infinite Parallel Scaling',
+    desc: 'Deploy 1 or 1,000 digital workers simultaneously across geographic regions with automatic rate limiting and queue management.',
+    tag: 'Global Edge Fleet',
   },
   {
-    icon: '🔒',
-    title: 'Enterprise Security',
-    desc: 'SOC 2 Type II compliant. Secrets are encrypted at rest and in transit. Workers never store credentials in plaintext.',
-    tags: ['SOC 2', 'Zero-trust'],
+    icon: (
+      <svg className="w-6 h-6 text-[#1B133C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    ),
+    title: 'Visual Diff & Full Audit Logs',
+    desc: 'Every click, keystroke, and downloaded artifact is captured with visual playback, structured JSON diffs, and timestamped receipts.',
+    tag: '100% Traceability',
   },
   {
-    icon: '🔌',
-    title: 'Integrations Hub',
-    desc: 'Trigger workers from Slack, Zapier, Webhooks, or your own API. Receive results wherever your team already works.',
-    tags: ['Slack', 'Webhooks', 'REST API'],
+    icon: (
+      <svg className="w-6 h-6 text-[#1B133C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+      </svg>
+    ),
+    title: 'Bi-directional Webhooks & API',
+    desc: 'Trigger workers from Slack, HubSpot, Salesforce, or your backend. Feed verified output data directly into your warehouse.',
+    tag: 'Universal Webhooks',
   },
 ]
 
-const PILLARS = [
-  { label: '10×', sub: 'Team capacity boost' },
-  { label: '< 5 min', sub: 'Average setup time' },
-  { label: '99.9%', sub: 'Uptime SLA' },
-  { label: '0', sub: 'Infrastructure to manage' },
-]
-
-export default function FeaturesPage({ setPage }) {
+export default function FeaturesPage({ setPage, onOpenEarlyAccess }) {
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(160deg, #f5f0ff 0%, #fffbf7 40%, #eef6ff 100%)', position: 'relative', overflow: 'hidden' }}>
+    <div className="min-h-screen bg-gradient-to-b from-[#F7F6FC] via-white to-[#F2EFFE] text-[#1B133C] flex flex-col font-sans">
+      <AxonNav activePage="features" setPage={setPage} onOpenEarlyAccess={onOpenEarlyAccess} />
 
-      {/* Ambient blobs */}
-      <div className="axon-blob" style={{ width: 520, height: 520, top: -120, right: -140, background: 'radial-gradient(circle, rgba(167,139,250,0.22) 0%, transparent 70%)' }} />
-      <div className="axon-blob" style={{ width: 380, height: 380, bottom: 100, left: -80, background: 'radial-gradient(circle, rgba(196,165,253,0.18) 0%, transparent 70%)' }} />
-
-      <AxonNav activePage="features" setPage={setPage} />
-
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '4rem 24px 6rem', position: 'relative', zIndex: 1 }}>
-
-        {/* Section header */}
-        <div className="fade-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <div className="axon-pill" style={{ marginBottom: 20, display: 'inline-flex' }}>
-            Platform Capabilities
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 rounded-xl border border-[#1B133C]/10 bg-white/70 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#1B133C] mb-4">
+            Engineered for Autonomous Execution
           </div>
-          <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(2.4rem, 5vw, 4rem)', lineHeight: 1.05, letterSpacing: '-0.02em', color: '#1B133C', maxWidth: 680, margin: '0 auto 1.2rem' }}>
-            Everything you need to replace <em>manual browser work</em>
-          </h2>
-          <p style={{ maxWidth: 560, margin: '0 auto', fontSize: 15, lineHeight: 1.7, color: 'rgba(27,19,60,0.62)' }}>
-            Axon doesn't just automate tasks — it deploys purpose-built digital workers that understand context, handle errors, and report back with structured data.
+          <h1 className="font-['Instrument_Serif'] text-4xl sm:text-6xl md:text-7xl leading-[1] tracking-tight text-[#1B133C] mb-6">
+            Intelligent digital workers built for real-world chaos
+          </h1>
+          <p className="text-sm sm:text-base leading-relaxed text-[#1B133C]/70">
+            Unlike fragile traditional RPA scripts that shatter the moment a button moves by 2 pixels, Axon&apos;s digital workers understand context, semantics, and website logic.
           </p>
         </div>
 
-        {/* Stats strip */}
-        <div className="fade-up delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 16, marginBottom: '4rem' }}>
-          {PILLARS.map(p => (
-            <div key={p.label} className="axon-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
-              <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(2rem, 4vw, 2.8rem)', color: '#7c3aed', lineHeight: 1.1 }}>{p.label}</div>
-              <div style={{ fontSize: 13, color: 'rgba(27,19,60,0.58)', marginTop: 6, fontWeight: 500 }}>{p.sub}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Feature grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20, marginBottom: '4rem' }}>
-          {FEATURES.map((f, i) => (
-            <div key={f.title} className={`axon-card fade-up delay-${(i % 4) + 1}`} style={{ padding: '1.75rem 1.5rem' }}>
-              <div style={{ fontSize: 32, marginBottom: 14 }}>{f.icon}</div>
-              <h3 style={{ fontSize: 17, fontWeight: 600, color: '#1B133C', marginBottom: 10, letterSpacing: '-0.01em' }}>{f.title}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.65, color: 'rgba(27,19,60,0.62)', marginBottom: 16 }}>{f.desc}</p>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                {f.tags.map(t => (
-                  <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11.5, fontWeight: 600, color: '#7c3aed', background: 'rgba(124,58,237,0.08)', border: '1px solid rgba(124,58,237,0.15)', borderRadius: 6, padding: '0.2rem 0.55rem' }}>
-                    <CheckIcon size={11} /> {t}
-                  </span>
-                ))}
+        {/* Feature Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          {FEATURES.map((feature, idx) => (
+            <div
+              key={idx}
+              className="bg-white/70 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-[#1B133C]/10 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-[#1B133C]/5 flex items-center justify-center mb-6">
+                  {feature.icon}
+                </div>
+                <div className="inline-block text-[11px] font-semibold tracking-wider uppercase text-[#1B133C]/60 mb-2">
+                  {feature.tag}
+                </div>
+                <h3 className="font-['Instrument_Serif'] text-2xl text-[#1B133C] leading-snug mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-xs sm:text-sm leading-relaxed text-[#1B133C]/70">
+                  {feature.desc}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* How it works strip */}
-        <div className="axon-card fade-up" style={{ padding: '2.5rem', textAlign: 'center' }}>
-          <div className="axon-pill" style={{ marginBottom: 18, display: 'inline-flex' }}>How It Works</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 24, marginTop: 12 }}>
-            {[
-              { step: '01', title: 'Record', body: 'Open any website and click through your workflow once. Axon captures every step.' },
-              { step: '02', title: 'Review', body: 'Inspect the generated automation graph. Tweak selectors, add conditionals, schedule triggers.' },
-              { step: '03', title: 'Deploy', body: 'One click launches your digital worker. It runs on schedule, on-demand, or via webhook.' },
-              { step: '04', title: 'Monitor', body: 'View live runs, screenshots, and extracted data in your Axon dashboard or your own tooling.' },
-            ].map(s => (
-              <div key={s.step} style={{ textAlign: 'left' }}>
-                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 32, color: '#c4b5fd', lineHeight: 1 }}>{s.step}</div>
-                <div style={{ fontWeight: 600, fontSize: 15, color: '#1B133C', margin: '8px 0 6px' }}>{s.title}</div>
-                <div style={{ fontSize: 13.5, lineHeight: 1.6, color: 'rgba(27,19,60,0.60)' }}>{s.body}</div>
+        {/* Interactive Comparison Strip */}
+        <div className="bg-white/70 backdrop-blur-md rounded-2xl p-8 border border-[#1B133C]/10 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded-md">
+                Why Legacy Automation Fails
+              </span>
+              <h2 className="font-['Instrument_Serif'] text-3xl sm:text-4xl text-[#1B133C] mt-4 mb-4">
+                Humans shouldn&apos;t spend 4 hours a day clicking repetitive forms
+              </h2>
+              <p className="text-sm leading-relaxed text-[#1B133C]/70 mb-6">
+                Axon digital workers observe browser workflows like a senior operations analyst, verifying each step with multi-modal inspection before committing state changes.
+              </p>
+              <button
+                onClick={onOpenEarlyAccess}
+                className="rounded-xl bg-[#1B133C] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-opacity cursor-pointer"
+              >
+                Deploy Your First Worker
+              </button>
+            </div>
+
+            <div className="bg-[#1B133C] text-white rounded-xl p-6 font-mono text-xs space-y-3">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <span className="text-white/60">WORKER_ID</span>
+                <span className="text-emerald-400 font-semibold">axon-agent-0929 #RUNNING</span>
               </div>
-            ))}
+              <div className="space-y-1.5 text-white/80">
+                <p className="text-white/40">// Autonomous Browser Session</p>
+                <p>&gt; Target: Supplier Portal (OAuth2 verified)</p>
+                <p>&gt; Navigating to `/invoices/pending`</p>
+                <p>&gt; Detected layout change: button shifted from `.btn-dl` to `#download-v2`</p>
+                <p className="text-emerald-400">&gt; Self-healed selector: confidence 99.8%</p>
+                <p>&gt; Downloaded 42 PDF invoices (SHA-256 verified)</p>
+                <p className="text-emerald-300">&gt; Reconciled with ERP: 0 errors, 100% matched</p>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* CTA bar */}
-        <div className="fade-up" style={{ textAlign: 'center', marginTop: '4rem' }}>
-          <button
-            onClick={() => setPage('home')}
-            style={{ borderRadius: 12, background: '#1B133C', color: '#fff', border: 'none', padding: '0.875rem 2rem', fontSize: 15, fontWeight: 600, fontFamily: 'Inter, sans-serif', cursor: 'pointer', boxShadow: '0 4px 24px rgba(124,58,237,0.3)', transition: 'transform 0.2s, box-shadow 0.2s' }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(124,58,237,0.38)' }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(124,58,237,0.3)' }}
-          >
-            Start for Free — No Credit Card
-          </button>
-        </div>
-
-      </div>
+      </main>
     </div>
   )
 }

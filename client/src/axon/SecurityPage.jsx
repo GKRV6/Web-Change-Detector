@@ -1,118 +1,102 @@
 import React from 'react'
 import AxonNav from './AxonNav'
-import { CheckIcon } from './Icons'
 
-const CERTS = [
-  { icon: '🏛️', title: 'SOC 2 Type II', desc: 'Annual third-party audit of our security controls, availability, and confidentiality practices.' },
-  { icon: '🔐', title: 'AES-256 Encryption', desc: 'All secrets, session tokens, and user data encrypted at rest and in transit — always.' },
-  { icon: '🛡️', title: 'Zero-Trust Architecture', desc: 'Workers never hold persistent credentials. Secrets are injected ephemerally per-run and discarded.' },
-  { icon: '🌐', title: 'GDPR & CCPA Ready', desc: 'Data residency controls, right-to-erasure tooling, and DPA templates available on request.' },
-]
+export default function SecurityPage({ setPage, onOpenEarlyAccess }) {
+  const SECURITY_PILLARS = [
+    {
+      title: 'Ephemeral Headless Sandboxes',
+      badge: 'Zero Persistent State',
+      desc: 'Each worker executes inside an isolated microVM sandbox. Browser profiles, cookies, and cached artifacts are cryptographically scrubbed the millisecond a workflow terminates.',
+    },
+    {
+      title: 'HSM Vault Credential Injection',
+      badge: 'AES-256 GCM',
+      desc: 'Logins and MFA tokens are injected at runtime via hardware-security-module backed vaults. Your plaintext credentials are never revealed to worker logs, DOM trees, or telemetry.',
+    },
+    {
+      title: 'SOC 2 Type II Certified',
+      badge: 'Continuous Compliance',
+      desc: 'Audited annually by independent security compliance auditors covering security, availability, confidential handling, and change management procedures.',
+    },
+    {
+      title: 'Immutable Audit Trail',
+      badge: 'Tamper-Proof Playback',
+      desc: 'Every click, network request, and snapshot is cryptographically signed and stored in immutable, append-only logs for rigorous enterprise compliance inspection.',
+    },
+  ]
 
-const PRACTICES = [
-  'Automated dependency vulnerability scanning on every commit',
-  'Penetration testing by third parties twice per year',
-  'Bug bounty program with responsible disclosure process',
-  'Immutable audit logs stored separately from primary infrastructure',
-  'Role-based access control with principle of least privilege',
-  'Isolated worker sandboxes — no cross-tenant data leakage possible',
-  '24/7 on-call security engineering rotation',
-  'SBOM (Software Bill of Materials) published for every release',
-]
-
-export default function SecurityPage({ setPage }) {
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(155deg, #f4f0ff 0%, #fdfcff 45%, #f0f7ff 100%)', position: 'relative', overflow: 'hidden' }}>
+    <div className="min-h-screen bg-gradient-to-b from-[#F7F6FC] via-white to-[#F2EFFE] text-[#1B133C] flex flex-col font-sans">
+      <AxonNav activePage="security" setPage={setPage} onOpenEarlyAccess={onOpenEarlyAccess} />
 
-      {/* Blobs */}
-      <div className="axon-blob" style={{ width: 480, height: 480, top: -80, left: -100, background: 'radial-gradient(circle, rgba(196,165,253,0.20) 0%, transparent 70%)' }} />
-      <div className="axon-blob" style={{ width: 360, height: 360, bottom: 60, right: -60, background: 'radial-gradient(circle, rgba(147,197,253,0.20) 0%, transparent 70%)' }} />
-
-      <AxonNav activePage="security" setPage={setPage} />
-
-      <div style={{ maxWidth: 1000, margin: '0 auto', padding: '4rem 24px 6rem', position: 'relative', zIndex: 1 }}>
-
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         {/* Header */}
-        <div className="fade-up" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <div className="axon-pill" style={{ marginBottom: 20, display: 'inline-flex' }}>Security & Trust</div>
-          <h2 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', lineHeight: 1.05, letterSpacing: '-0.02em', color: '#1B133C', marginBottom: '1rem' }}>
-            Built secure from <em>day one</em>
-          </h2>
-          <p style={{ maxWidth: 540, margin: '0 auto', fontSize: 15, lineHeight: 1.7, color: 'rgba(27,19,60,0.62)' }}>
-            Axon is designed for teams that can't afford a data breach. We've embedded security at every layer — not bolted on after the fact.
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 rounded-xl border border-[#1B133C]/10 bg-white/70 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#1B133C] mb-4">
+            Security & Compliance First
+          </div>
+          <h1 className="font-['Instrument_Serif'] text-4xl sm:text-6xl md:text-7xl leading-[1] tracking-tight text-[#1B133C] mb-6">
+            Autonomous automation you can safely trust with sensitive workflows
+          </h1>
+          <p className="text-sm sm:text-base leading-relaxed text-[#1B133C]/70">
+            We built Axon with defense-in-depth principles from day one. Trusted by financial institutions, legal teams, and healthcare operators who demand zero-compromise security.
           </p>
         </div>
 
-        {/* Certifications grid */}
-        <div className="fade-up delay-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: '4rem' }}>
-          {CERTS.map(c => (
-            <div key={c.title} className="axon-card" style={{ padding: '1.75rem 1.5rem', textAlign: 'center' }}>
-              <div style={{ fontSize: 36, marginBottom: 14 }}>{c.icon}</div>
-              <div style={{ fontWeight: 700, fontSize: 15, color: '#1B133C', marginBottom: 8 }}>{c.title}</div>
-              <div style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(27,19,60,0.58)' }}>{c.desc}</div>
+        {/* Pillars Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {SECURITY_PILLARS.map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-white/70 backdrop-blur-md rounded-2xl p-8 border border-[#1B133C]/10 shadow-sm flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[11px] font-semibold tracking-wider uppercase text-orange-600 bg-orange-50 px-2.5 py-1 rounded-md">
+                  {item.badge}
+                </span>
+                <h3 className="font-['Instrument_Serif'] text-3xl text-[#1B133C] mt-4 mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm leading-relaxed text-[#1B133C]/70">
+                  {item.desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Architecture diagram (visual card) */}
-        <div className="fade-up axon-card" style={{ padding: '2.5rem', marginBottom: '3rem', background: 'rgba(27,19,60,0.96)', border: '1px solid rgba(167,139,250,0.3)' }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '2.5rem' }}>
-            <div style={{ flex: '0 0 auto', maxWidth: 380 }}>
-              <div className="axon-pill" style={{ marginBottom: 16, background: 'rgba(167,139,250,0.15)', border: '1px solid rgba(167,139,250,0.25)', color: '#c4b5fd' }}>Zero-Trust Model</div>
-              <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 28, color: '#fff', lineHeight: 1.15, marginBottom: 12 }}>
-                Ephemeral secrets, isolated sandboxes
-              </h3>
-              <p style={{ fontSize: 14, lineHeight: 1.7, color: 'rgba(255,255,255,0.60)' }}>
-                Every worker run starts with a fresh, isolated browser context. Credentials are injected from our encrypted vault for that run only and destroyed on completion — never written to disk or logs.
-              </p>
-            </div>
-            <div style={{ flex: 1, minWidth: 260 }}>
-              {[
-                { label: 'Request Layer', color: '#c4b5fd', detail: 'TLS 1.3, cert pinning, rate limiting' },
-                { label: 'Secrets Vault', color: '#a78bfa', detail: 'AES-256, HSM-backed, ephemeral injection' },
-                { label: 'Worker Sandbox', color: '#7c3aed', detail: 'Isolated chromium, no disk persistence' },
-                { label: 'Audit Log Store', color: '#5b21b6', detail: 'Immutable, append-only, separate VPC' },
-              ].map((l, i) => (
-                <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: i < 3 ? 12 : 0 }}>
-                  <div style={{ width: 10, height: 10, borderRadius: '50%', background: l.color, flexShrink: 0, boxShadow: `0 0 8px ${l.color}` }} />
-                  <div>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>{l.label}</div>
-                    <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)' }}>{l.detail}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Security practices checklist */}
-        <div className="fade-up delay-2" style={{ marginBottom: '4rem' }}>
-          <h3 style={{ fontFamily: "'Instrument Serif', serif", fontSize: 26, color: '#1B133C', marginBottom: '1.5rem' }}>Our security practices</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 10 }}>
-            {PRACTICES.map(p => (
-              <div key={p} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '0.75rem 1rem', borderRadius: 10, background: 'rgba(255,255,255,0.60)', border: '1px solid rgba(27,19,60,0.07)' }}>
-                <span style={{ marginTop: 1, flexShrink: 0 }}><CheckIcon size={15} /></span>
-                <span style={{ fontSize: 13.5, lineHeight: 1.55, color: '#1B133C' }}>{p}</span>
+        {/* Security Diagram Card */}
+        <div className="bg-[#1B133C] text-white rounded-2xl p-8 md:p-12 shadow-xl">
+          <div className="max-w-3xl">
+            <span className="text-xs font-bold uppercase tracking-wider text-orange-400 bg-orange-400/10 border border-orange-400/20 px-3 py-1 rounded-full">
+              Defense In Depth Architecture
+            </span>
+            <h2 className="font-['Instrument_Serif'] text-3xl sm:text-5xl mt-6 mb-4 leading-tight">
+              Isolated Execution Pipeline
+            </h2>
+            <p className="text-sm text-white/70 leading-relaxed mb-8">
+              Every request is gated by zero-trust identity verification, injected into an ephemeral Chromium sandbox, and verified through an encrypted outbound proxy before completing execution.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
+              <div className="border border-white/10 rounded-xl p-4 bg-white/5">
+                <div className="text-white/40 uppercase mb-1 font-sans text-[10px]">Step 01</div>
+                <div className="text-emerald-400 font-bold mb-1">Vault Authorization</div>
+                <div className="text-white/70">JIT credential check with mutual TLS verification</div>
               </div>
-            ))}
+              <div className="border border-white/10 rounded-xl p-4 bg-white/5">
+                <div className="text-white/40 uppercase mb-1 font-sans text-[10px]">Step 02</div>
+                <div className="text-orange-400 font-bold mb-1">MicroVM Sandbox</div>
+                <div className="text-white/70">Isolated execution without local filesystem retention</div>
+              </div>
+              <div className="border border-white/10 rounded-xl p-4 bg-white/5">
+                <div className="text-white/40 uppercase mb-1 font-sans text-[10px]">Step 03</div>
+                <div className="text-cyan-400 font-bold mb-1">Signed Audit Log</div>
+                <div className="text-white/70">Immutable cryptographic proof dispatched to customer</div>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Contact security team */}
-        <div className="fade-up axon-card" style={{ padding: '2rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
-          <div>
-            <div style={{ fontWeight: 700, fontSize: 16, color: '#1B133C', marginBottom: 5 }}>Report a vulnerability</div>
-            <div style={{ fontSize: 13.5, color: 'rgba(27,19,60,0.60)' }}>We take reports seriously and respond within 24 hours. All researchers are credited and rewarded.</div>
-          </div>
-          <a href="mailto:security@axon.ai" style={{ display: 'inline-block', borderRadius: 10, background: '#1B133C', color: '#fff', padding: '0.7rem 1.5rem', fontSize: 14, fontWeight: 600, fontFamily: 'Inter, sans-serif', textDecoration: 'none', transition: 'opacity 0.2s' }}
-            onMouseEnter={e => e.currentTarget.style.opacity='0.82'}
-            onMouseLeave={e => e.currentTarget.style.opacity='1'}
-          >
-            security@axon.ai →
-          </a>
-        </div>
-
-      </div>
+      </main>
     </div>
   )
 }

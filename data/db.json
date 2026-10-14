@@ -48,11 +48,11 @@
       ],
       "numberSelector": "",
       "status": "OK",
-      "statusReason": "Change detected (v3, 97.2% diff)",
-      "lastChecked": "2026-10-14T19:11:11.272Z",
-      "lastChanged": "2026-10-14T19:11:11.272Z",
-      "nextCheck": "2026-10-14T19:26:49.269Z",
-      "responseTimeMs": 3077,
+      "statusReason": "Change detected (v4, 9.3% diff)",
+      "lastChecked": "2026-10-14T19:26:53.813Z",
+      "lastChanged": "2026-10-14T19:26:53.813Z",
+      "nextCheck": "2026-10-14T19:42:21.808Z",
+      "responseTimeMs": 2709,
       "active": true,
       "consecutiveFailures": 0,
       "tags": [
@@ -119,11 +119,11 @@
       ],
       "numberSelector": "",
       "status": "OK",
-      "statusReason": "Starship integrated flight test countdown monitored.",
-      "lastChecked": "2026-10-14T18:36:01.557Z",
-      "lastChanged": "2026-10-14T04:41:01.557Z",
-      "nextCheck": "2026-10-14T19:36:01.557Z",
-      "responseTimeMs": 512,
+      "statusReason": "Change detected (v1, 0% diff)",
+      "lastChecked": "2026-10-14T19:37:24.023Z",
+      "lastChanged": "2026-10-14T19:37:24.023Z",
+      "nextCheck": "2026-10-14T20:39:46.022Z",
+      "responseTimeMs": 1208,
       "active": true,
       "consecutiveFailures": 0,
       "tags": [
@@ -150,11 +150,11 @@
       ],
       "numberSelector": ".product-price-val",
       "status": "OK",
-      "statusReason": "Change detected (v4, 98.8% diff)",
-      "lastChecked": "2026-10-14T19:13:05.733Z",
+      "statusReason": "Checked. No meaningful changes detected.",
+      "lastChecked": "2026-10-14T19:28:01.316Z",
       "lastChanged": "2026-10-14T19:13:05.733Z",
-      "nextCheck": "2026-10-14T19:27:56.733Z",
-      "responseTimeMs": 271,
+      "nextCheck": "2026-10-14T19:42:55.316Z",
+      "responseTimeMs": 207,
       "active": true,
       "consecutiveFailures": 0,
       "tags": [
@@ -193,6 +193,34 @@
     }
   ],
   "snapshots": [
+    {
+      "id": "snap-mon-3-v1",
+      "monitorId": "mon-3",
+      "version": 1,
+      "timestamp": "2026-10-14T19:37:24.023Z",
+      "contentHash": "4e1ea53e246a8216ddf073ec5c9e0fa8690ef6fd16b54aba5ab979833435591d",
+      "textSnapshot": "VEHICLES\nSTARSHIP\nDRAGON\nFALCON 9\nFALCON HEAVY\nHUMAN SPACEFLIGHT\nOVERVIEW\nSPACE STATION\nEARTH ORBIT\nTHE MOON\nMARS & BEYOND\nSTARLINK\nSTARSHIELD\nSPACEXSI\nSTARMIND\nGROK\nGROKIPEDIA\n𝕏\nTERAFAB\nCOMPANY\nMISSION\nCAREERS\nSITES\nUPDATES\nCONTENT\nINVESTORS\nSHOP\nSPACEX\nSPACEXSI\nSTARSHIP\n\nSERVICE TO EARTH ORBIT, MOON, MARS AND BEYOND\n\nSTARSHIP OVERVIEW\n\nSpaceX's Starship spacecraft and Super Heavy rocket - collectively referred to as Starship - represent a fully reusable transportation system designed to carry both crew and cargo to Earth orbit, the Moon, Mars and beyond. Starship is the world's most powerful launch vehicle ever developed, designed to carry more than 100 metric tonnes to orbit in a fully reusable configuration.\n\nHEIGHT\t\n\n124 m / 407 ft\n\n\nDIAMETER\t\n\n9 m / 29.5 ft\n\n\nPAYLOAD CAPACITY\t\n\n100+ t\n\nSTARSHIP\n\nStarship is the spacecraft and upper stage of the overall Starship system and is being designed for full reusability. The vehicle is planned to come in several different configurations and is designed to carry crew and cargo to Earth orbit, the Moon, Mars, and beyond. Starship’s design could one day enable point-to-point transport on Earth, facilitating travel to anywhere in the world in one hour or less.\n\nHEIGHT\t\n\n52 m / 171 ft\n\n\nDIAMETER\t\n\n9 m / 29.5 ft\n\n\nPROPELLANT CAPACITY\t\n\n1,600 t / 3.5 Mlb\n\n\nTHRUST\t\n\n1,614 tf / 3.5 Mlbf\n\n\nPAYLOAD CAPACITY\t\n\n100+ t\n\nSUPER HEAVY\n\nSuper Heavy is the first stage, or booster, of the Starship launch system. Powered by 33 Raptor engines using sub-cooled liquid methane (CH4) and liquid oxygen (LOX), Super Heavy is designed to be fully reusable by returning back to the launch site to be caught by the launch tower and then rapidly reused.\n\nHEIGHT\t\n\n72 m / 236 ft\n\n\nDIAMETER\t\n\n9 m / 29.5 ft\n\n\nPROPELLANT CAPACITY\t\n\n3,650 t / 8 Mlb\n\n\nTHRUST\t\n\n8,240 tf / 18.1 Mlbf\n\nRAPTOR ENGINES\nRAPTORRAPTOR VACUUM (RVAC)\n\nThe Raptor engine is a reusable methane-oxygen staged-combustion engine that powers the Starship system and has twice the thrust of the Falcon 9 Merlin engine. Starship is powered by six engines, three Raptor engines, and three Raptor Vacuum (RVac) engines, which are designed for use in the vacuum of space. Super Heavy is powered by 33 Raptor engines, with 13 maneuverable engines in the center and the remaining 20 around the perimeter of the booster's aft end.\n\nDIAMETER\t\n\n1.3 m / 4.2 ft\n\n\nHEIGHT\t\n\n2.9 m / 9.5 ft\n\n\nTHRUST\t\n\n250 tf / 551 klbf\n\nSTARSHIP CAPABILITIES\n\nAs the most powerful launch system ever developed, Starship will be able to carry up to 100 people on long-duration, interplanetary flights. Starship will also help enable satellite delivery, the development of a Moon base, and point-to-point transport here on Earth.\n\nPAYLOAD DELIVERY\n\nStarship is designed to deliver payloads farther and at a lower marginal cost per launch than our current Falcon vehicles. With a payload compartment larger than any fairing currently in operation or development, Starship will enable transport of many satellites, large space telescopes, and significant amounts of cargo to Earth orbit, the Moon, Mars and beyond.\n\nMOON MISSIONS\n\nStarship cargo flights to the lunar surface for research, development, and exploratory missions start no earlier than 2028, at a rate of $100 million per metric ton.\n\nJoin a Starship human spaceflight mission now, flying around the Moon or landing on the lunar surface.\n\nFor additional information on human spaceflight seat or full mission availability, payload masses, pricing details, and timeframes, please contact sales@spacex.com.\n\nMARS MISSIONS\n\nStarship cargo flights to the Martian surface for research, development, and exploratory missions start no earlier than 2028, at a rate of $100 million per metric ton.\n\nFor additional information on payload masses, pricing details, and timeframes, please contact sales@spacex.com.\n\nFULL AND RAPID REUSABILITY\n\nStarship and Super Heavy are designed to return to the launch site and be caught following their flight, with the ability to rapidly turn around and launch again without refurbishment.\n\nON-ORBIT REFILLING\n\nStarship leverages tanker vehicles (essentially the Starship spacecraft minus the windows) to refill the Starship spacecraft in low-Earth orbit prior to departing for Mars. Refilling on-orbit enables the transport several hundred tonnes of cargo per ship all the way to Mars. And if the tanker ship has high reuse capability, the primary cost is just that of the oxygen and methane, which is extremely low.\n\nSTARBASE\n\nDevelopment, manufacturing, testing, and launch of Starship takes place at Starbase, home to SpaceX headquarters and one of the world's first commercial spaceports designed for orbital missions.\n\nSTARFACTORY\n\nManufacturing hub for Starship and Super Heavy. Sized to be capable of building up to 1,000 Starships per year in order to send enough crew and cargo during Mars transfer windows to build a self-sustaining civilization.\n\nLAUNCH AND TEST\n\nOrbital launch pad and vehicle test site for prelaunch testing and flight of the world's most powerful rocket. The Starbase launch pad has two of the tallest launch towers in the world, specially designed to integrate, test, launch, and catch Starship and Super Heavy vehicles.\n\nFor inquiries about Starship and our human spaceflight program, contact sales@spacex.com",
+      "cleanedText": "VEHICLES\nSTARSHIP\nDRAGON\nFALCON 9\nFALCON HEAVY\nHUMAN SPACEFLIGHT\nOVERVIEW\nSPACE STATION\nEARTH ORBIT\nTHE MOON\nMARS & BEYOND\nSTARLINK\nSTARSHIELD\nSPACEXSI\nSTARMIND\nGROK\nGROKIPEDIA\n𝕏\nTERAFAB\nCOMPANY\nMISSION\nCAREERS\nSITES\nUPDATES\nCONTENT\nINVESTORS\nSHOP\nSPACEX\nSPACEXSI\nSTARSHIP\nSERVICE TO EARTH ORBIT, MOON, MARS AND BEYOND\nSTARSHIP OVERVIEW\nSpaceX's Starship spacecraft and Super Heavy rocket - collectively referred to as Starship - represent a fully reusable transportation system designed to carry both crew and cargo to Earth orbit, the Moon, Mars and beyond. Starship is the world's most powerful launch vehicle ever developed, designed to carry more than 100 metric tonnes to orbit in a fully reusable configuration.\nHEIGHT \n124 m / 407 ft\nDIAMETER \n9 m / 29.5 ft\nPAYLOAD CAPACITY \n100+ t\nSTARSHIP\nStarship is the spacecraft and upper stage of the overall Starship system and is being designed for full reusability. The vehicle is planned to come in several different configurations and is designed to carry crew and cargo to Earth orbit, the Moon, Mars, and beyond. Starship’s design could one day enable point-to-point transport on Earth, facilitating travel to anywhere in the world in one hour or less.\nHEIGHT \n52 m / 171 ft\nDIAMETER \n9 m / 29.5 ft\nPROPELLANT CAPACITY \n1,600 t / 3.5 Mlb\nTHRUST \n1,614 tf / 3.5 Mlbf\nPAYLOAD CAPACITY \n100+ t\nSUPER HEAVY\nSuper Heavy is the first stage, or booster, of the Starship launch system. Powered by 33 Raptor engines using sub-cooled liquid methane (CH4) and liquid oxygen (LOX), Super Heavy is designed to be fully reusable by returning back to the launch site to be caught by the launch tower and then rapidly reused.\nHEIGHT \n72 m / 236 ft\nDIAMETER \n9 m / 29.5 ft\nPROPELLANT CAPACITY \n3,650 t / 8 Mlb\nTHRUST \n8,240 tf / 18.1 Mlbf\nRAPTOR ENGINES\nRAPTORRAPTOR VACUUM (RVAC)\nThe Raptor engine is a reusable methane-oxygen staged-combustion engine that powers the Starship system and has twice the thrust of the Falcon 9 Merlin engine. Starship is powered by six engines, three Raptor engines, and three Raptor Vacuum (RVac) engines, which are designed for use in the vacuum of space. Super Heavy is powered by 33 Raptor engines, with 13 maneuverable engines in the center and the remaining 20 around the perimeter of the booster's aft end.\nDIAMETER \n1.3 m / 4.2 ft\nHEIGHT \n2.9 m / 9.5 ft\nTHRUST \n250 tf / 551 klbf\nSTARSHIP CAPABILITIES\nAs the most powerful launch system ever developed, Starship will be able to carry up to 100 people on long-duration, interplanetary flights. Starship will also help enable satellite delivery, the development of a Moon base, and point-to-point transport here on Earth.\nPAYLOAD DELIVERY\nStarship is designed to deliver payloads farther and at a lower marginal cost per launch than our current Falcon vehicles. With a payload compartment larger than any fairing currently in operation or development, Starship will enable transport of many satellites, large space telescopes, and significant amounts of cargo to Earth orbit, the Moon, Mars and beyond.\nMOON MISSIONS\nStarship cargo flights to the lunar surface for research, development, and exploratory missions start no earlier than 2028, at a rate of $100 million per metric ton.\nJoin a Starship human spaceflight mission now, flying around the Moon or landing on the lunar surface.\nFor additional information on human spaceflight seat or full mission availability, payload masses, pricing details, and timeframes, please contact sales@spacex.com.\nMARS MISSIONS\nStarship cargo flights to the Martian surface for research, development, and exploratory missions start no earlier than 2028, at a rate of $100 million per metric ton.\nFor additional information on payload masses, pricing details, and timeframes, please contact sales@spacex.com.\nFULL AND RAPID REUSABILITY\nStarship and Super Heavy are designed to return to the launch site and be caught following their flight, with the ability to rapidly turn around and launch again without refurbishment.\nON-ORBIT REFILLING\nStarship leverages tanker vehicles (essentially the Starship spacecraft minus the windows) to refill the Starship spacecraft in low-Earth orbit prior to departing for Mars. Refilling on-orbit enables the transport several hundred tonnes of cargo per ship all the way to Mars. And if the tanker ship has high reuse capability, the primary cost is just that of the oxygen and methane, which is extremely low.\nSTARBASE\nDevelopment, manufacturing, testing, and launch of Starship takes place at Starbase, home to SpaceX headquarters and one of the world's first commercial spaceports designed for orbital missions.\nSTARFACTORY\nManufacturing hub for Starship and Super Heavy. Sized to be capable of building up to 1,000 Starships per year in order to send enough crew and cargo during Mars transfer windows to build a self-sustaining civilization.\nLAUNCH AND TEST\nOrbital launch pad and vehicle test site for prelaunch testing and flight of the world's most powerful rocket. The Starbase launch pad has two of the tallest launch towers in the world, specially designed to integrate, test, launch, and catch Starship and Super Heavy vehicles.\nFor inquiries about Starship and our human spaceflight program, contact sales@spacex.com",
+      "screenshotUrl": "/screenshots/snap_mon-3_1792006641788.png",
+      "status": "OK",
+      "changePercent": 0,
+      "aiSummary": "Initial baseline snapshot captured. Monitoring active.",
+      "extractedNumber": 9
+    },
+    {
+      "id": "snap-mon-1-v4",
+      "monitorId": "mon-1",
+      "version": 4,
+      "timestamp": "2026-10-14T19:26:53.813Z",
+      "contentHash": "3c642f203fb4e391648c7e24e1d99effc2146e1a19a11b8cf7cb2ac433157e3d",
+      "textSnapshot": "1.\t\n\tFire at Starlink site in Bulgaria after suspected sabotage in Poland (dpa-international.com)\n2.\t\n\tAI agents aren't 'going rogue.' Frontier labs are skipping security basics (csoonline.com)\n3.\t\n\tBetter HTTP/1 connection reuse in Go 1.27 (go.dev)\n4.\t\n\tHow the Military Will Hack the Election (kenklippenstein.com)\n5.\t\n\tIosevka is an open-source, sans-serif and slab-serif monospace font (typeof.net)\n6.\t\n\tSubmarine cable resilience (apnic.net)\n7.\t\n\tPhloem: Git history grown like a slime mold (stemdeck.app)\n8.\t\n\tBanks are now trying to offload the AI data center debt they just underwrote (startupfortune.com)\n9.\t\n\tNeckbeard – a DevOps/platform/SRE plugin for your agent (github.com/bealesh)\n10.\t\n\tShow HN: Petal, open-source CoScreen/ScreenHero finally free (petal.live)\n11.\t\n\tLittleJS is 2D and 3D now (frankforce.com)\n12.\t\n\tContainer ship sinks in Strait of Hormuz as Iran steps up attacks (cnbc.com)\n13.\t\n\tPg_vectorsearch: An index that is faster than pgvector's IVFFlat and HNSW (github.com/timescale)\n14.\t\n\tGoogle is silently linking your phone number across all signed-in accounts (androidauthority.com)\n15.\t\n\tICE Planning $100M 'Nightmare' Domestic Spy Program (prospect.org)\n16.\t\n\tAmazon pushes up prices across the Internet (not-ship.com)\n17.\t\n\tAmerica Didn't Lose Its Rare Earth Industry. It Sold It (lawfaremedia.org)\n18.\t\n\tTesla's Robotaxis Blow Through School Zones, NHTSA Petition Alleges (extremetech.com)\n19.\t\n\tShow HN: Graphicle, a Rust port of Graphify with memory for coding agents (github.com/graphicle-ai)\n20.\t\n\tRunning Windows desktop tests from Linux with disposable VMs (qawolf.com)\n21.\t\n\tShow HN: I wrote an email app that accepts only one sender per inbox (clova.email)\n22.\t\n\tThe Gold-Bug: Edgar Allan Poe's story that taught me about cryptography (2024) (robotsinplainenglish.com)\n23.\t\n\tThe Origin Story of Kid Pix (red-green-blue.com)\n24.\t\n\tNvidia's first GPU: GeForce 256 (dfarq.homeip.net)\n25.\t\n\tStrands Decider: Why Not an Encoder? (brooker.co.za)\n26.\t\n\tTV4 postpones show after AI agent erases edited material (swedenherald.com)\n27.\t\n\tSound (2022) (ciechanow.ski)\n28.\t\n\tScientists Are Teaching Birds to Sing Lost Songs (yale.edu)\n29.\t\n\tDo dentists know what they're doing? (mapwriting.substack.com)\n30.\t\n\tShow HN: A guided 3D Leonardo da Vinci museum, built in code (museumofages.org)",
+      "cleanedText": "1. \n Fire at Starlink site in Bulgaria after suspected sabotage in Poland (dpa-international.com)\n2. \n AI agents aren't 'going rogue.' Frontier labs are skipping security basics (csoonline.com)\n3. \n Better HTTP/1 connection reuse in Go 1.27 (go.dev)\n4. \n How the Military Will Hack the Election (kenklippenstein.com)\n5. \n Iosevka is an open-source, sans-serif and slab-serif monospace font (typeof.net)\n6. \n Submarine cable resilience (apnic.net)\n7. \n Phloem: Git history grown like a slime mold (stemdeck.app)\n8. \n Banks are now trying to offload the AI data center debt they just underwrote (startupfortune.com)\n9. \n Neckbeard – a DevOps/platform/SRE plugin for your agent (github.com/bealesh)\n10. \n Show HN: Petal, open-source CoScreen/ScreenHero finally free (petal.live)\n11. \n LittleJS is 2D and 3D now (frankforce.com)\n12. \n Container ship sinks in Strait of Hormuz as Iran steps up attacks (cnbc.com)\n13. \n Pg_vectorsearch: An index that is faster than pgvector's IVFFlat and HNSW (github.com/timescale)\n14. \n Google is silently linking your phone number across all signed-in accounts (androidauthority.com)\n15. \n ICE Planning $100M 'Nightmare' Domestic Spy Program (prospect.org)\n16. \n Amazon pushes up prices across the Internet (not-ship.com)\n17. \n America Didn't Lose Its Rare Earth Industry. It Sold It (lawfaremedia.org)\n18. \n Tesla's Robotaxis Blow Through School Zones, NHTSA Petition Alleges (extremetech.com)\n19. \n Show HN: Graphicle, a Rust port of Graphify with memory for coding agents (github.com/graphicle-ai)\n20. \n Running Windows desktop tests from Linux with disposable VMs (qawolf.com)\n21. \n Show HN: I wrote an email app that accepts only one sender per inbox (clova.email)\n22. \n The Gold-Bug: Edgar Allan Poe's story that taught me about cryptography (2024) (robotsinplainenglish.com)\n23. \n The Origin Story of Kid Pix (red-green-blue.com)\n24. \n Nvidia's first GPU: GeForce 256 (dfarq.homeip.net)\n25. \n Strands Decider: Why Not an Encoder? (brooker.co.za)\n26. \n TV4 postpones show after AI agent erases edited material (swedenherald.com)\n27. \n Sound (2022) (ciechanow.ski)\n28. \n Scientists Are Teaching Birds to Sing Lost Songs (yale.edu)\n29. \n Do dentists know what they're doing? (mapwriting.substack.com)\n30. \n Show HN: A guided 3D Leonardo da Vinci museum, built in code (museumofages.org)",
+      "screenshotUrl": "/screenshots/snap_mon-1_1792006010295.png",
+      "status": "OK",
+      "changePercent": 9.3,
+      "aiSummary": "Alert trigger: keyword \"AI, Show HN\" appeared in updated content.",
+      "extractedNumber": 1
+    },
     {
       "id": "snap-mon-2-v1",
       "monitorId": "mon-2",
@@ -322,6 +350,19 @@
   ],
   "alerts": [
     {
+      "id": "alert-1792006013820-932",
+      "monitorId": "mon-1",
+      "monitorName": "Hacker News Top Stories",
+      "timestamp": "2026-10-14T19:26:53.820Z",
+      "type": "KEYWORD_TRIGGER",
+      "title": "Keyword 'AI, Show HN' Triggered on Hacker News Top Stories",
+      "summary": "Alert trigger: keyword \"AI, Show HN\" appeared in updated content.",
+      "diffPercent": 9.3,
+      "sentTo": "Discord Webhook, Email (alerts@horizonx.local)",
+      "delivered": true,
+      "snapshotId": "snap-mon-1-v4"
+    },
+    {
       "id": "alert-1792005185736-604",
       "monitorId": "mon-4",
       "monitorName": "GPU Pricing Tracker (RTX 5090)",
@@ -385,7 +426,7 @@
     }
   ],
   "systemMetrics": {
-    "totalChecksPerformed": 1435,
+    "totalChecksPerformed": 1438,
     "coalescedRequestsSaved": 615,
     "noiseAlertsSuppressed": 982,
     "activeMonitorsCount": 5,
