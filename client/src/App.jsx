@@ -67,6 +67,24 @@ export default function App() {
     setActiveTab('diff');
   };
 
+  const [scrollY, setScrollY] = useState(0);
+
+  // Parallax scroll listener for silky downward motion while scrolling down
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleSelectPicker = (url) => {
     setSelectedUrlForPicker(url);
     setActiveTab('picker');
@@ -74,19 +92,27 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative text-[#1B133C] flex flex-col font-sans selection:bg-orange-500 selection:text-white">
-      {/* Full-Viewport Looping Motion Video (stays visible while scrolling down) */}
+      {/* Full-Viewport Looping Motion Video (glides smoothly down while scrolling down) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
-          className="w-full h-full object-cover object-top scale-105"
+        <div
+          className="absolute -top-[25vh] -left-[3vw] w-[106vw] h-[155vh] will-change-transform transition-transform duration-100 ease-out"
           style={{
-            filter: 'saturate(1.48) contrast(1.08) brightness(1.02)'
+            transform: `translate3d(0, ${Math.min(scrollY * 0.22, 220)}px, 0)`
           }}
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260714_113715_c7e0daa0-8bdd-4486-a2da-040901f8f0ea.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
+        >
+          <video
+            className="w-full h-full object-cover will-change-[object-position] transition-[object-position] duration-150 ease-out scale-105"
+            style={{
+              filter: 'saturate(1.48) contrast(1.08) brightness(1.02)',
+              objectPosition: `center ${Math.min(scrollY * 0.05, 45)}%`
+            }}
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260714_113715_c7e0daa0-8bdd-4486-a2da-040901f8f0ea.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        </div>
         {/* Soft frosted ambient overlays: vibrant motion shines through with crisp text legibility */}
         <div className="absolute inset-0 bg-white/20 backdrop-blur-[0.5px] pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/35 pointer-events-none" />
