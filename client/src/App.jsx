@@ -73,96 +73,116 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#F7F6FC] via-white to-[#F2EFFE] text-[#1B133C] flex flex-col font-sans selection:bg-orange-500 selection:text-white">
-      {/* Top Navbar */}
-      <Navbar
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        onOpenAddModal={() => setIsAddModalOpen(true)}
-        queueMetrics={queueMetrics?.queue}
-      />
-
-      {/* Hero Banner with looping motion video (visible on dashboard) */}
-      {activeTab === 'dashboard' && (
-        <HeroBanner
-          onOpenAddModal={() => setIsAddModalOpen(true)}
-          onExperienceClick={() => setActiveTab('picker')}
-          metrics={queueMetrics?.metrics}
-          onOpenEarlyAccess={() => setIsEarlyAccessOpen(true)}
+    <div className="min-h-screen relative text-[#1B133C] flex flex-col font-sans selection:bg-orange-500 selection:text-white">
+      {/* Full-Viewport Looping Motion Video (stays visible while scrolling down) */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          className="w-full h-full object-cover object-top scale-105"
+          style={{
+            filter: 'saturate(1.48) contrast(1.08) brightness(1.02)'
+          }}
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260714_113715_c7e0daa0-8bdd-4486-a2da-040901f8f0ea.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
         />
-      )}
+        {/* Soft frosted ambient overlays: vibrant motion shines through with crisp text legibility */}
+        <div className="absolute inset-0 bg-white/20 backdrop-blur-[0.5px] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/35 pointer-events-none" />
+      </div>
 
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* Top Navbar */}
+        <Navbar
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          onOpenAddModal={() => setIsAddModalOpen(true)}
+          queueMetrics={queueMetrics?.queue}
+        />
+
+        {/* Hero Banner (visible on dashboard) */}
         {activeTab === 'dashboard' && (
-          <MonitorList
-            monitors={monitors}
-            onRefresh={loadData}
-            onSelectDiff={handleSelectDiff}
-            onSelectPicker={handleSelectPicker}
+          <HeroBanner
             onOpenAddModal={() => setIsAddModalOpen(true)}
+            onExperienceClick={() => setActiveTab('picker')}
+            metrics={queueMetrics?.metrics}
+            onOpenEarlyAccess={() => setIsEarlyAccessOpen(true)}
           />
         )}
 
-        {activeTab === 'picker' && (
-          <VisualPicker
-            initialUrl={selectedUrlForPicker}
-            onSelectSelectors={(selectors) => {
-              setIsAddModalOpen(true);
-            }}
-          />
-        )}
+        {/* Main Content Area */}
+        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {activeTab === 'dashboard' && (
+            <MonitorList
+              monitors={monitors}
+              onRefresh={loadData}
+              onSelectDiff={handleSelectDiff}
+              onSelectPicker={handleSelectPicker}
+              onOpenAddModal={() => setIsAddModalOpen(true)}
+            />
+          )}
 
-        {activeTab === 'diff' && (
-          <DiffStudio
-            monitors={monitors}
-            selectedMonitorId={selectedMonitorForDiff}
-            onSelectMonitor={setSelectedMonitorForDiff}
-          />
-        )}
+          {activeTab === 'picker' && (
+            <VisualPicker
+              initialUrl={selectedUrlForPicker}
+              onSelectSelectors={(selectors) => {
+                setIsAddModalOpen(true);
+              }}
+            />
+          )}
 
-        {activeTab === 'number' && (
-          <NumberTracker
-            monitors={monitors}
-          />
-        )}
+          {activeTab === 'diff' && (
+            <DiffStudio
+              monitors={monitors}
+              selectedMonitorId={selectedMonitorForDiff}
+              onSelectMonitor={setSelectedMonitorForDiff}
+            />
+          )}
 
-        {activeTab === 'architecture' && (
-          <ArchitectureHub />
-        )}
+          {activeTab === 'number' && (
+            <NumberTracker
+              monitors={monitors}
+            />
+          )}
 
-        {activeTab === 'alerts' && (
-          <AlertsHub
-            monitors={monitors}
-          />
-        )}
-      </main>
+          {activeTab === 'architecture' && (
+            <ArchitectureHub />
+          )}
 
-      {/* Add Monitor Modal */}
-      <AddMonitorModal
-        isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
-        onCreated={handleMonitorCreated}
-      />
+          {activeTab === 'alerts' && (
+            <AlertsHub
+              monitors={monitors}
+            />
+          )}
+        </main>
 
-      {/* Early Access Waitlist Modal */}
-      <EarlyAccessModal
-        isOpen={isEarlyAccessOpen}
-        onClose={() => setIsEarlyAccessOpen(false)}
-      />
+        {/* Add Monitor Modal */}
+        <AddMonitorModal
+          isOpen={isAddModalOpen}
+          onClose={() => setIsAddModalOpen(false)}
+          onCreated={handleMonitorCreated}
+        />
 
-      {/* Footer in clean light frosted styling */}
-      <footer className="border-t border-[#1B133C]/10 bg-white/70 backdrop-blur-md py-8 text-center text-xs font-mono text-[#1B133C]/60">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-[#1B133C] font-bold">Horizon</span>
-            <span>— Autonomous Web Change Intelligence Suite</span>
+        {/* Early Access Waitlist Modal */}
+        <EarlyAccessModal
+          isOpen={isEarlyAccessOpen}
+          onClose={() => setIsEarlyAccessOpen(false)}
+        />
+
+        {/* Footer in clean light frosted styling */}
+        <footer className="border-t border-[#1B133C]/10 bg-white/70 backdrop-blur-md py-8 text-center text-xs font-mono text-[#1B133C]/60">
+          <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <span className="text-[#1B133C] font-bold">Horizon</span>
+              <span>— Autonomous Web Change Intelligence Suite</span>
+            </div>
+            <div>
+              Powered by Headless Chromium Sandboxes, Noise Filtering & Request Coalescing Pool
+            </div>
           </div>
-          <div>
-            Powered by Headless Chromium Sandboxes, Noise Filtering & Request Coalescing Pool
-          </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 }

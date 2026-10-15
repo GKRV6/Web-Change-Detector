@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Play, Pause, RefreshCw, GitCompare, Eye, Rss, Trash2, 
   ExternalLink, ShieldAlert, CheckCircle2, AlertTriangle, Clock, 
-  Search, SlidersHorizontal, Sparkles, Hash
+  Search, SlidersHorizontal, Sparkles, Hash, Plus
 } from 'lucide-react';
 import { triggerCheck, toggleMonitor, deleteMonitor } from '../api';
 
@@ -102,6 +102,25 @@ export default function MonitorList({
   return (
     <div className="space-y-6">
       
+      {/* Section Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+        <div>
+          <h2 className="font-['Instrument_Serif'] text-3xl sm:text-4xl text-[#1B133C]">
+            Active Monitored Targets
+          </h2>
+          <p className="text-xs sm:text-sm text-[#1B133C]/60 mt-1">
+            Headless sandboxes tracking DOM diffs with real-time request coalescing
+          </p>
+        </div>
+        <button
+          onClick={onOpenAddModal}
+          className="px-5 py-2.5 rounded-xl bg-[#1B133C] text-white hover:bg-[#1B133C]/90 text-xs font-semibold shadow-sm hover:shadow transition-all flex items-center gap-2 cursor-pointer self-start sm:self-auto"
+        >
+          <Plus className="w-4 h-4 text-orange-400" />
+          <span>Add Monitor</span>
+        </button>
+      </div>
+
       {/* Top Filter and Search Bar */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         

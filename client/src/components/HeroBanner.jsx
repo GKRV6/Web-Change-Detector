@@ -1,27 +1,10 @@
 import React from 'react';
 import { ArrowRight, Eye, Database, Filter, Cpu } from 'lucide-react';
 
-const VIDEO_URL =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260714_113715_c7e0daa0-8bdd-4486-a2da-040901f8f0ea.mp4';
-
 export default function HeroBanner({ onOpenAddModal, onExperienceClick, metrics, onOpenEarlyAccess }) {
   return (
-    <section className="relative overflow-hidden min-h-[92vh] flex flex-col justify-between pt-8 pb-12 border-b border-[#1B133C]/10">
-      
-      {/* Background motion video */}
-      <video
-        className="absolute inset-0 z-0 w-full h-[130%] object-cover object-top pointer-events-none"
-        src={VIDEO_URL}
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
-
-      {/* Subtle vignette/tint overlay for optimal text contrast */}
-      <div className="absolute inset-0 z-1 bg-gradient-to-b from-white/25 via-white/10 to-[#F7F6FC]/90 pointer-events-none" />
-
-      {/* Hero content — centered above video */}
+    <section className="relative min-h-[85vh] flex flex-col justify-between pt-8 pb-12">
+      {/* Hero content — centered */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex-1 flex flex-col items-center justify-center mt-4 mb-8">
         
         {/* YC Badge */}
