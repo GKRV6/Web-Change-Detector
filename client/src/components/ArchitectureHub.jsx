@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { 
-  ShieldCheck, Users, Filter, Clock, Play, CheckCircle2, 
-  AlertTriangle, ShieldAlert, Cpu, ArrowRight, Zap, RefreshCw 
+  ShieldCheck, Users, Filter, Clock, CheckCircle2, 
+  ShieldAlert, Zap 
 } from 'lucide-react';
 import { runCaptchaTest, runDedupTest, runNoiseTest, runRateLimitTest } from '../api';
 
 export default function ArchitectureHub() {
-  // Simulator States
   const [activeQuestion, setActiveQuestion] = useState(1);
 
   // Q1: Captcha simulator state
@@ -58,12 +57,14 @@ export default function ArchitectureHub() {
       
       {/* Header */}
       <div>
-        <div className="flex items-center gap-2 text-xs font-mono text-horizon-orange mb-1">
+        <div className="flex items-center gap-2 text-xs font-mono text-purple-600 mb-1">
           <ShieldCheck className="w-4 h-4" />
           <span>SYSTEM DESIGN SPECIFICATION & ARCHITECTURAL SOLUTIONS</span>
         </div>
-        <h2 className="text-2xl font-bold text-white">Core Requirements & Architecture Hub</h2>
-        <p className="text-xs text-slate-400">
+        <h2 className="font-['Instrument_Serif'] text-3xl sm:text-4xl font-normal text-[#1B133C]">
+          Core Requirements & Architecture Hub
+        </h2>
+        <p className="text-xs sm:text-sm text-[#1B133C]/60">
           In-depth architectural analysis and live interactive simulators resolving the 4 core design challenges.
         </p>
       </div>
@@ -71,10 +72,10 @@ export default function ArchitectureHub() {
       {/* 4 Questions Navigation Bar */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {[
-          { id: 1, title: 'Q1: Outages & CAPTCHA', subtitle: 'Is an outage or CAPTCHA a change?', icon: ShieldAlert, color: 'text-amber-400' },
-          { id: 2, title: 'Q2: 200 Users Deduplication', subtitle: 'Fetched 200 times for 200 users?', icon: Users, color: 'text-emerald-400' },
-          { id: 3, title: 'Q3: Endless Alerts & Noise', subtitle: 'How to avoid flapping changes?', icon: Filter, color: 'text-horizon-orange' },
-          { id: 4, title: 'Q4: Site Hammering & Rate Limits', subtitle: 'How to avoid hammering a site?', icon: Clock, color: 'text-horizon-cyan' }
+          { id: 1, title: 'Q1: Outages & CAPTCHA', subtitle: 'Is an outage or CAPTCHA a change?', icon: ShieldAlert, color: 'text-amber-600' },
+          { id: 2, title: 'Q2: 200 Users Deduplication', subtitle: 'Fetched 200 times for 200 users?', icon: Users, color: 'text-emerald-600' },
+          { id: 3, title: 'Q3: Endless Alerts & Noise', subtitle: 'How to avoid flapping changes?', icon: Filter, color: 'text-orange-500' },
+          { id: 4, title: 'Q4: Site Hammering & Limits', subtitle: 'How to avoid hammering a site?', icon: Clock, color: 'text-purple-600' }
         ].map(q => {
           const Icon = q.icon;
           const isActive = activeQuestion === q.id;
@@ -82,38 +83,38 @@ export default function ArchitectureHub() {
             <button
               key={q.id}
               onClick={() => setActiveQuestion(q.id)}
-              className={`p-4 rounded-2xl text-left transition-all border ${
+              className={`p-4 rounded-2xl text-left transition-all border cursor-pointer ${
                 isActive
-                  ? 'bg-horizon-900 border-horizon-orange shadow-glow-orange'
-                  : 'bg-horizon-950/70 border-white/5 hover:border-white/20'
+                  ? 'bg-white border-[#1B133C] shadow-md ring-1 ring-[#1B133C]'
+                  : 'bg-white/70 border-[#1B133C]/10 hover:border-[#1B133C]/30 shadow-sm'
               }`}
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono font-bold text-white">{q.title}</span>
+                <span className="text-xs font-mono font-bold text-[#1B133C]">{q.title}</span>
                 <Icon className={`w-4 h-4 ${q.color}`} />
               </div>
-              <div className="text-[11px] text-slate-400 truncate">{q.subtitle}</div>
+              <div className="text-[11px] text-[#1B133C]/60 truncate">{q.subtitle}</div>
             </button>
           );
         })}
       </div>
 
       {/* ACTIVE QUESTION PANEL & SIMULATOR */}
-      <div className="horizon-card rounded-3xl p-6 sm:p-8 space-y-8">
+      <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 space-y-8 border border-[#1B133C]/10 shadow-sm text-[#1B133C]">
         
         {/* ================= QUESTION 1 ================= */}
         {activeQuestion === 1 && (
           <div className="space-y-6">
-            <div className="border-b border-white/10 pb-4">
-              <span className="text-xs font-mono text-amber-400">CORE REQUIREMENT 1</span>
-              <h3 className="text-xl font-bold text-white mt-1">
+            <div className="border-b border-[#1B133C]/10 pb-4">
+              <span className="text-xs font-mono text-amber-700 font-bold">CORE REQUIREMENT 1</span>
+              <h3 className="font-['Instrument_Serif'] text-2xl sm:text-3xl font-normal text-[#1B133C] mt-1">
                 Is a site outage or CAPTCHA challenge considered a content change?
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#1B133C]/80 leading-relaxed">
               <div className="space-y-3">
-                <h4 className="font-mono text-white text-sm font-semibold text-rose-400 flex items-center gap-1.5">
+                <h4 className="font-mono text-rose-700 text-sm font-semibold flex items-center gap-1.5">
                   <span>❌ The Problem With Naive Crawlers:</span>
                 </h4>
                 <p>
@@ -125,15 +126,15 @@ export default function ArchitectureHub() {
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-mono text-white text-sm font-semibold text-emerald-400 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>HorizonX Architectural Solution:</span>
+                <h4 className="font-mono text-emerald-800 text-sm font-semibold flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>Axon Architectural Solution:</span>
                 </h4>
                 <p>
-                  HorizonX treats outages and CAPTCHA challenges as <strong>System Availability Incidents</strong>, never as content changes:
+                  Axon treats outages and CAPTCHA challenges as <strong>System Availability Incidents</strong>, never as content changes:
                 </p>
-                <ul className="list-disc pl-4 space-y-1 text-slate-300">
-                  <li><strong>Status Separation:</strong> The monitor transitions to <code className="text-amber-400">BLOCKED</code> or <code className="text-rose-400">ERROR</code>.</li>
+                <ul className="list-disc pl-4 space-y-1 text-[#1B133C]/80">
+                  <li><strong>Status Separation:</strong> The monitor transitions to <code className="text-amber-700 bg-amber-50 px-1 py-0.5 rounded">BLOCKED</code> or <code className="text-rose-700 bg-rose-50 px-1 py-0.5 rounded">ERROR</code>.</li>
                   <li><strong>Snapshot Preservation:</strong> Baseline snapshot remains completely untouched.</li>
                   <li><strong>Diff Alert Suppression:</strong> Content change notifications are halted; a distinct availability alert is sent.</li>
                   <li><strong>Automatic Self-Healing:</strong> When the challenge clears, normal diffing resumes without artificial diff spikes.</li>
@@ -142,20 +143,20 @@ export default function ArchitectureHub() {
             </div>
 
             {/* Interactive Live Simulator */}
-            <div className="p-5 rounded-2xl bg-horizon-950 border border-white/10 space-y-4">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-[#1B133C]/10 space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-mono font-bold text-white flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-amber-400" />
+                <h4 className="text-xs font-mono font-bold text-[#1B133C] flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-amber-600" />
                   <span>Interactive Simulator: Anti-Bot Wall Interception</span>
                 </h4>
-                <span className="text-[11px] font-mono text-slate-400">Live API Test</span>
+                <span className="text-[11px] font-mono text-[#1B133C]/50">Live API Test</span>
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => testCaptcha(true)}
                   disabled={captchaLoading}
-                  className="px-4 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-slate-950 font-mono text-xs font-bold transition-all"
+                  className="px-4 py-2 rounded-xl bg-amber-100 hover:bg-amber-500 hover:text-white text-amber-900 font-mono text-xs font-bold transition-all border border-amber-200 cursor-pointer"
                 >
                   Simulate Cloudflare 403 / Turnstile
                 </button>
@@ -163,24 +164,24 @@ export default function ArchitectureHub() {
                 <button
                   onClick={() => testCaptcha(false)}
                   disabled={captchaLoading}
-                  className="px-4 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 font-mono text-xs font-bold transition-all"
+                  className="px-4 py-2 rounded-xl bg-emerald-100 hover:bg-emerald-600 hover:text-white text-emerald-900 font-mono text-xs font-bold transition-all border border-emerald-200 cursor-pointer"
                 >
                   Simulate Legitimate Page Load (200 OK)
                 </button>
               </div>
 
               {captchaSimResult && (
-                <div className="p-4 rounded-xl bg-horizon-900 border border-white/10 font-mono text-xs space-y-2">
+                <div className="p-4 rounded-xl bg-white border border-[#1B133C]/10 font-mono text-xs space-y-2 shadow-sm">
                   <div className="flex items-center gap-2">
-                    <span className="text-slate-400">SYSTEM VERDICT:</span>
-                    <span className="font-bold text-white px-2 py-0.5 rounded bg-white/10">
+                    <span className="text-[#1B133C]/60">SYSTEM VERDICT:</span>
+                    <span className="font-bold text-[#1B133C] px-2 py-0.5 rounded bg-[#1B133C]/5 border border-[#1B133C]/10">
                       {captchaSimResult.verdict}
                     </span>
                   </div>
-                  <div className="text-slate-300">
-                    <strong className="text-horizon-orange">Action Taken:</strong> {captchaSimResult.action}
+                  <div className="text-[#1B133C]">
+                    <strong className="text-orange-600">Action Taken:</strong> {captchaSimResult.action}
                   </div>
-                  <div className="text-slate-400 text-[11px]">
+                  <div className="text-[#1B133C]/60 text-[11px]">
                     {captchaSimResult.explanation}
                   </div>
                 </div>
@@ -193,16 +194,16 @@ export default function ArchitectureHub() {
         {/* ================= QUESTION 2 ================= */}
         {activeQuestion === 2 && (
           <div className="space-y-6">
-            <div className="border-b border-white/10 pb-4">
-              <span className="text-xs font-mono text-emerald-400">CORE REQUIREMENT 2</span>
-              <h3 className="text-xl font-bold text-white mt-1">
+            <div className="border-b border-[#1B133C]/10 pb-4">
+              <span className="text-xs font-mono text-emerald-700 font-bold">CORE REQUIREMENT 2</span>
+              <h3 className="font-['Instrument_Serif'] text-2xl sm:text-3xl font-normal text-[#1B133C] mt-1">
                 If 200 users watch the same URL, is it fetched 200 times?
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#1B133C]/80 leading-relaxed">
               <div className="space-y-3">
-                <h4 className="font-mono text-white text-sm font-semibold text-rose-400">
+                <h4 className="font-mono text-rose-700 text-sm font-semibold">
                   ❌ The Waste of 1:1 Polling:
                 </h4>
                 <p>
@@ -211,12 +212,12 @@ export default function ArchitectureHub() {
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-mono text-white text-sm font-semibold text-emerald-400 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>HorizonX URL Request Coalescing Pool:</span>
+                <h4 className="font-mono text-emerald-800 text-sm font-semibold flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span>Axon URL Request Coalescing Pool:</span>
                 </h4>
                 <p>
-                  HorizonX employs a <strong>URL Coalescing & Fanout Scheduler</strong>:
+                  Axon employs a <strong>URL Coalescing & Fanout Scheduler</strong>:
                 </p>
                 <ul className="list-disc pl-4 space-y-1">
                   <li><strong>Single Master Fetch:</strong> When multiple jobs require the same URL within the interval window, exactly 1 headless fetch is scheduled.</li>
@@ -227,23 +228,23 @@ export default function ArchitectureHub() {
             </div>
 
             {/* Interactive Deduplication Benchmark Simulator */}
-            <div className="p-5 rounded-2xl bg-horizon-950 border border-white/10 space-y-4">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-[#1B133C]/10 space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-mono font-bold text-white flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-emerald-400" />
+                <h4 className="text-xs font-mono font-bold text-[#1B133C] flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-emerald-600" />
                   <span>Interactive Simulator: Request Coalescing Savings</span>
                 </h4>
                 <button
                   onClick={testDedup}
-                  className="px-4 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-bold transition-all"
+                  className="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-xs font-bold transition-all shadow-sm cursor-pointer"
                 >
                   Simulate Concurrent Batch
                 </button>
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-2">
-                  Simulate Concurrent Watchers: <strong className="text-white">{watchersCount} Users</strong>
+                <label className="block text-xs font-mono text-[#1B133C]/70 mb-2">
+                  Simulate Concurrent Watchers: <strong className="text-[#1B133C]">{watchersCount} Users</strong>
                 </label>
                 <input
                   type="range"
@@ -252,23 +253,23 @@ export default function ArchitectureHub() {
                   step={10}
                   value={watchersCount}
                   onChange={e => setWatchersCount(parseInt(e.target.value))}
-                  className="w-full accent-emerald-400 h-2 bg-horizon-900 rounded-lg cursor-pointer"
+                  className="w-full accent-[#1B133C] h-2 bg-slate-200 rounded-lg cursor-pointer"
                 />
               </div>
 
               {dedupResult && (
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs text-center">
-                  <div className="p-3 rounded-xl bg-horizon-900 border border-white/10">
-                    <div className="text-slate-400 text-[10px]">HEADLESS BROWSER RUNS</div>
-                    <div className="text-xl font-bold text-emerald-400">{dedupResult.actualHeadlessFetches} Fetch</div>
+                  <div className="p-3 rounded-xl bg-white border border-[#1B133C]/10 shadow-sm">
+                    <div className="text-[#1B133C]/50 text-[10px]">HEADLESS BROWSER RUNS</div>
+                    <div className="text-xl font-bold text-emerald-700">{dedupResult.actualHeadlessFetches} Fetch</div>
                   </div>
-                  <div className="p-3 rounded-xl bg-horizon-900 border border-white/10">
-                    <div className="text-slate-400 text-[10px]">SAVED DUPLICATE REQUESTS</div>
-                    <div className="text-xl font-bold text-white">{dedupResult.savedRequests} Saved</div>
+                  <div className="p-3 rounded-xl bg-white border border-[#1B133C]/10 shadow-sm">
+                    <div className="text-[#1B133C]/50 text-[10px]">SAVED DUPLICATE REQUESTS</div>
+                    <div className="text-xl font-bold text-[#1B133C]">{dedupResult.savedRequests} Saved</div>
                   </div>
-                  <div className="p-3 rounded-xl bg-horizon-900 border border-white/10">
-                    <div className="text-slate-400 text-[10px]">BANDWIDTH EFFICIENCY</div>
-                    <div className="text-xl font-bold text-horizon-cyan">{dedupResult.bandwidthSavedPercent}%</div>
+                  <div className="p-3 rounded-xl bg-white border border-[#1B133C]/10 shadow-sm">
+                    <div className="text-[#1B133C]/50 text-[10px]">BANDWIDTH EFFICIENCY</div>
+                    <div className="text-xl font-bold text-purple-700">{dedupResult.bandwidthSavedPercent}%</div>
                   </div>
                 </div>
               )}
@@ -280,16 +281,16 @@ export default function ArchitectureHub() {
         {/* ================= QUESTION 3 ================= */}
         {activeQuestion === 3 && (
           <div className="space-y-6">
-            <div className="border-b border-white/10 pb-4">
-              <span className="text-xs font-mono text-horizon-orange">CORE REQUIREMENT 3</span>
-              <h3 className="text-xl font-bold text-white mt-1">
+            <div className="border-b border-[#1B133C]/10 pb-4">
+              <span className="text-xs font-mono text-orange-600 font-bold">CORE REQUIREMENT 3</span>
+              <h3 className="font-['Instrument_Serif'] text-2xl sm:text-3xl font-normal text-[#1B133C] mt-1">
                 How to avoid endless alerts on pages that differ on every load?
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#1B133C]/80 leading-relaxed">
               <div className="space-y-3">
-                <h4 className="font-mono text-white text-sm font-semibold text-rose-400">
+                <h4 className="font-mono text-rose-700 text-sm font-semibold">
                   ❌ The Noise Dilemma:
                 </h4>
                 <p>
@@ -298,9 +299,9 @@ export default function ArchitectureHub() {
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-mono text-white text-sm font-semibold text-horizon-orange flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>HorizonX Multi-Layer Noise Suppression:</span>
+                <h4 className="font-mono text-orange-700 text-sm font-semibold flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-orange-500" />
+                  <span>Axon Multi-Layer Noise Suppression:</span>
                 </h4>
                 <ul className="list-disc pl-4 space-y-1">
                   <li><strong>DOM Element Pruning:</strong> Removes elements matching <code>ignoreSelectors</code> (.ads, .timestamp, footer).</li>
@@ -312,41 +313,43 @@ export default function ArchitectureHub() {
             </div>
 
             {/* Interactive Live Noise Tester */}
-            <div className="p-5 rounded-2xl bg-horizon-950 border border-white/10 space-y-4">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-[#1B133C]/10 space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-mono font-bold text-white flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-horizon-orange" />
+                <h4 className="text-xs font-mono font-bold text-[#1B133C] flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-orange-500" />
                   <span>Interactive Live Noise Stripping Engine</span>
                 </h4>
                 <button
                   onClick={testNoise}
-                  className="px-4 py-1.5 rounded-xl bg-horizon-orange hover:bg-horizon-orangeHover text-white font-mono text-xs font-bold transition-all shadow-glow-orange"
+                  className="px-4 py-1.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-mono text-xs font-bold transition-all shadow-sm cursor-pointer"
                 >
                   Sanitize & Compute Hash
                 </button>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono text-slate-400 mb-1">
+                <label className="block text-[11px] font-mono text-[#1B133C]/60 mb-1">
                   RAW INPUT (With Dynamic Noise, Timestamps & Nonces):
                 </label>
                 <textarea
                   rows={3}
                   value={noiseSampleText}
                   onChange={e => setNoiseSampleText(e.target.value)}
-                  className="w-full p-3 rounded-xl bg-horizon-900 border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-horizon-orange"
+                  className="w-full p-3 rounded-xl bg-white border border-[#1B133C]/15 text-[#1B133C] text-xs font-mono focus:outline-none focus:border-[#1B133C] shadow-sm"
                 />
               </div>
 
               {noiseResult && (
                 <div className="space-y-3 font-mono text-xs">
-                  <div className="p-3 rounded-xl bg-horizon-900 border border-emerald-500/30 text-emerald-300">
-                    <div className="text-[10px] text-slate-400 mb-1">CLEANED TEXT (Noise & Tokens Stripped):</div>
+                  <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 shadow-sm">
+                    <div className="text-[10px] text-emerald-700 mb-1 font-bold">CLEANED TEXT (Noise & Tokens Stripped):</div>
                     <pre className="whitespace-pre-wrap">{noiseResult.cleanedText}</pre>
                   </div>
-                  <div className="flex items-center gap-2 text-slate-400 text-[11px]">
+                  <div className="flex items-center gap-2 text-[#1B133C]/70 text-[11px]">
                     <span>STABLE CONTENT HASH:</span>
-                    <code className="text-horizon-orange">{noiseResult.contentHash}</code>
+                    <code className="text-orange-600 bg-white px-2 py-0.5 rounded border border-[#1B133C]/10 shadow-xs font-bold">
+                      {noiseResult.contentHash}
+                    </code>
                   </div>
                 </div>
               )}
@@ -358,16 +361,16 @@ export default function ArchitectureHub() {
         {/* ================= QUESTION 4 ================= */}
         {activeQuestion === 4 && (
           <div className="space-y-6">
-            <div className="border-b border-white/10 pb-4">
-              <span className="text-xs font-mono text-horizon-cyan">CORE REQUIREMENT 4</span>
-              <h3 className="text-xl font-bold text-white mt-1">
+            <div className="border-b border-[#1B133C]/10 pb-4">
+              <span className="text-xs font-mono text-purple-700 font-bold">CORE REQUIREMENT 4</span>
+              <h3 className="font-['Instrument_Serif'] text-2xl sm:text-3xl font-normal text-[#1B133C] mt-1">
                 How to avoid hammering a site with requests?
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300 leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#1B133C]/80 leading-relaxed">
               <div className="space-y-3">
-                <h4 className="font-mono text-white text-sm font-semibold text-rose-400">
+                <h4 className="font-mono text-rose-700 text-sm font-semibold">
                   ❌ The Risk of Aggressive Crawling:
                 </h4>
                 <p>
@@ -376,9 +379,9 @@ export default function ArchitectureHub() {
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-mono text-white text-sm font-semibold text-horizon-cyan flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>HorizonX Polite Crawler Guarantees:</span>
+                <h4 className="font-mono text-purple-800 text-sm font-semibold flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-purple-600" />
+                  <span>Axon Polite Crawler Guarantees:</span>
                 </h4>
                 <ul className="list-disc pl-4 space-y-1">
                   <li><strong>Per-Domain Concurrency (Max 1):</strong> Never issues concurrent requests to the same hostname.</li>
@@ -390,15 +393,15 @@ export default function ArchitectureHub() {
             </div>
 
             {/* Interactive Domain Rate Limiter Simulator */}
-            <div className="p-5 rounded-2xl bg-horizon-950 border border-white/10 space-y-4">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-[#1B133C]/10 space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-mono font-bold text-white flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-horizon-cyan" />
+                <h4 className="text-xs font-mono font-bold text-[#1B133C] flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-purple-600" />
                   <span>Interactive Simulator: Domain Serializer & Cooldown Queue</span>
                 </h4>
                 <button
                   onClick={testRateLimit}
-                  className="px-4 py-1.5 rounded-xl bg-horizon-cyan hover:bg-sky-400 text-slate-950 font-mono text-xs font-bold transition-all shadow-glow-cyan"
+                  className="px-4 py-1.5 rounded-xl bg-[#1B133C] hover:bg-[#1B133C]/90 text-white font-mono text-xs font-bold transition-all shadow-sm cursor-pointer"
                 >
                   Queue 5 Concurrent Domain Checks
                 </button>
@@ -406,15 +409,15 @@ export default function ArchitectureHub() {
 
               {rateLimitResult && (
                 <div className="space-y-3 font-mono text-xs">
-                  <div className="text-slate-400 text-[11px]">
-                    Target Domain: <strong className="text-white">{rateLimitResult.domain}</strong> — Policy: {rateLimitResult.policy}
+                  <div className="text-[#1B133C]/70 text-[11px]">
+                    Target Domain: <strong className="text-[#1B133C]">{rateLimitResult.domain}</strong> — Policy: {rateLimitResult.policy}
                   </div>
                   <div className="space-y-2">
                     {rateLimitResult.queueTimeline.map(item => (
-                      <div key={item.requestIndex} className="p-2.5 rounded-xl bg-horizon-900 border border-white/10 flex items-center justify-between">
+                      <div key={item.requestIndex} className="p-2.5 rounded-xl bg-white border border-[#1B133C]/10 flex items-center justify-between shadow-xs">
                         <span>Check #{item.requestIndex}</span>
-                        <span className="text-horizon-cyan font-bold">Delay: +{item.scheduledDelaySec}s</span>
-                        <span className="text-slate-400 text-[11px]">{item.status}</span>
+                        <span className="text-purple-700 font-bold">Delay: +{item.scheduledDelaySec}s</span>
+                        <span className="text-[#1B133C]/60 text-[11px]">{item.status}</span>
                       </div>
                     ))}
                   </div>

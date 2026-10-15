@@ -59,7 +59,7 @@ export default function App() {
       particleCount: 80,
       spread: 60,
       origin: { y: 0.6 },
-      colors: ['#FF7A29', '#38BDF8', '#10B981']
+      colors: ['#1B133C', '#F97316', '#7C3AED']
     });
     loadData();
     setActiveTab('dashboard');
@@ -80,18 +80,18 @@ export default function App() {
     return <AxonApp onOpenChangeDetector={() => setView('change-detector')} />;
   }
 
-  // Otherwise show the Change Detector dashboard with a return header
+  // Otherwise show the Change Detector suite in the new Axon template
   return (
-    <div className="min-h-screen bg-horizon-950 text-slate-100 flex flex-col font-sans selection:bg-horizon-orange selection:text-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#F7F6FC] via-white to-[#F2EFFE] text-[#1B133C] flex flex-col font-sans selection:bg-orange-500 selection:text-white">
       {/* Return to Axon bar */}
-      <div className="bg-[#1B133C] text-white/90 text-xs px-4 py-2 border-b border-white/10 flex items-center justify-between">
+      <div className="bg-white/80 backdrop-blur-md border-b border-[#1B133C]/10 px-4 sm:px-8 py-2.5 text-xs flex items-center justify-between text-[#1B133C] shadow-xs">
         <div className="flex items-center gap-2">
-          <span className="font-semibold text-white">Axon Platform Companion:</span>
-          <span>Website Change Detector Suite</span>
+          <span className="font-semibold text-[#1B133C]">Axon Platform Companion:</span>
+          <span className="text-[#1B133C]/70">Website Change Detector Suite</span>
         </div>
         <button
           onClick={() => setView('axon')}
-          className="bg-white/10 hover:bg-white/20 text-white font-medium px-3 py-1 rounded-md transition-colors cursor-pointer text-xs flex items-center gap-1.5"
+          className="bg-[#1B133C] hover:bg-[#1B133C]/90 text-white font-medium px-3.5 py-1.5 rounded-xl transition-all cursor-pointer text-xs flex items-center gap-1.5 shadow-sm active:scale-95"
         >
           <span>← Back to Axon Landing Page</span>
         </button>
@@ -103,6 +103,7 @@ export default function App() {
         setActiveTab={setActiveTab}
         onOpenAddModal={() => setIsAddModalOpen(true)}
         queueMetrics={queueMetrics?.queue}
+        onBackToLanding={() => setView('axon')}
       />
 
       {/* Hero Banner (visible on dashboard or can be collapsed) */}
@@ -167,15 +168,15 @@ export default function App() {
         onCreated={handleMonitorCreated}
       />
 
-      {/* Footer matching HorizonX cosmic style */}
-      <footer className="border-t border-white/10 bg-horizon-950 py-8 text-center text-xs font-mono text-slate-500">
+      {/* Footer matching Axon template */}
+      <footer className="border-t border-[#1B133C]/10 bg-white/70 backdrop-blur-md py-8 text-center text-xs font-mono text-[#1B133C]/60">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-white font-bold">Horizon<span className="text-horizon-orange">X</span></span>
-            <span>— Autonomous Web Change Intelligence for Axon Workers</span>
+            <span className="text-[#1B133C] font-bold">Axon</span>
+            <span>— Autonomous Web Change Intelligence Suite</span>
           </div>
           <div>
-            Built with Headless Puppeteer Browser, Dynamic Noise Filter & Request Coalescing Pool
+            Powered by Headless Chromium Sandboxes, Noise Filtering & Request Coalescing Pool
           </div>
         </div>
       </footer>

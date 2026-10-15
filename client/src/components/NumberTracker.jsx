@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LineChart, TrendingDown, TrendingUp, DollarSign, ArrowUpRight, ArrowDownRight, Hash, Sparkles } from 'lucide-react';
+import { LineChart, DollarSign, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import { fetchSnapshots } from '../api';
 
@@ -20,7 +20,6 @@ export default function NumberTracker({ monitors }) {
       const res = await fetchSnapshots(mId);
       if (res.success && res.snapshots) {
         setSnapshots(res.snapshots);
-        // Build chart points sorted chronologically
         const points = res.snapshots
           .filter(s => s.extractedNumber !== null && s.extractedNumber !== undefined)
           .sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime())
@@ -55,12 +54,14 @@ export default function NumberTracker({ monitors }) {
       {/* Header */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 mb-1">
+          <div className="flex items-center gap-2 text-xs font-mono text-emerald-600 mb-1">
             <LineChart className="w-4 h-4" />
             <span>NUMERIC TELEMETRY & HISTORICAL TRENDS</span>
           </div>
-          <h2 className="text-2xl font-bold text-white">Number & Price Fluctuation Tracker</h2>
-          <p className="text-xs text-slate-400">
+          <h2 className="font-['Instrument_Serif'] text-3xl sm:text-4xl font-normal text-[#1B133C]">
+            Number & Price Fluctuation Tracker
+          </h2>
+          <p className="text-xs sm:text-sm text-[#1B133C]/60">
             Automatically extracts prices, follower counts, and numerical values into time-series visual trend charts.
           </p>
         </div>
@@ -70,7 +71,7 @@ export default function NumberTracker({ monitors }) {
           <select
             value={selectedMonitorId}
             onChange={e => setSelectedMonitorId(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-horizon-900 border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-horizon-orange"
+            className="w-full px-3 py-2 rounded-xl bg-white border border-[#1B133C]/15 text-[#1B133C] text-xs font-mono focus:outline-none focus:border-[#1B133C] shadow-sm cursor-pointer"
           >
             {monitors.map(m => (
               <option key={m.id} value={m.id}>
@@ -84,91 +85,93 @@ export default function NumberTracker({ monitors }) {
       {/* KPI Cards Strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         
-        <div className="horizon-card rounded-2xl p-4 border-l-2 border-l-emerald-400">
-          <div className="text-[10px] font-mono text-slate-400 mb-1">CURRENT VALUE</div>
-          <div className="text-2xl font-black text-white flex items-center gap-1">
-            <DollarSign className="w-5 h-5 text-emerald-400" />
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl p-5 border border-[#1B133C]/10 shadow-sm hover:shadow-md transition-all">
+          <div className="text-[10px] font-mono text-[#1B133C]/60 mb-1">CURRENT VALUE</div>
+          <div className="font-['Instrument_Serif'] text-3xl text-[#1B133C] flex items-center gap-1">
+            <DollarSign className="w-5 h-5 text-emerald-600" />
             <span>{currentVal.toLocaleString()}</span>
           </div>
-          <div className="text-[11px] text-emerald-400 font-mono mt-1">Latest snapshot</div>
+          <div className="text-[11px] text-emerald-700 font-mono mt-1 font-medium">Latest snapshot</div>
         </div>
 
-        <div className="horizon-card rounded-2xl p-4 border-l-2 border-l-horizon-orange">
-          <div className="text-[10px] font-mono text-slate-400 mb-1">ALL-TIME LOW</div>
-          <div className="text-2xl font-black text-white flex items-center gap-1">
-            <DollarSign className="w-5 h-5 text-horizon-orange" />
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl p-5 border border-[#1B133C]/10 shadow-sm hover:shadow-md transition-all">
+          <div className="text-[10px] font-mono text-[#1B133C]/60 mb-1">ALL-TIME LOW</div>
+          <div className="font-['Instrument_Serif'] text-3xl text-[#1B133C] flex items-center gap-1">
+            <DollarSign className="w-5 h-5 text-orange-500" />
             <span>{minVal.toLocaleString()}</span>
           </div>
-          <div className="text-[11px] text-slate-400 font-mono mt-1">Best recorded value</div>
+          <div className="text-[11px] text-[#1B133C]/50 font-mono mt-1">Best recorded value</div>
         </div>
 
-        <div className="horizon-card rounded-2xl p-4 border-l-2 border-l-rose-400">
-          <div className="text-[10px] font-mono text-slate-400 mb-1">ALL-TIME HIGH</div>
-          <div className="text-2xl font-black text-white flex items-center gap-1">
-            <DollarSign className="w-5 h-5 text-rose-400" />
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl p-5 border border-[#1B133C]/10 shadow-sm hover:shadow-md transition-all">
+          <div className="text-[10px] font-mono text-[#1B133C]/60 mb-1">ALL-TIME HIGH</div>
+          <div className="font-['Instrument_Serif'] text-3xl text-[#1B133C] flex items-center gap-1">
+            <DollarSign className="w-5 h-5 text-purple-600" />
             <span>{maxVal.toLocaleString()}</span>
           </div>
-          <div className="text-[11px] text-slate-400 font-mono mt-1">Peak recorded value</div>
+          <div className="text-[11px] text-[#1B133C]/50 font-mono mt-1">Peak recorded value</div>
         </div>
 
-        <div className="horizon-card rounded-2xl p-4 border-l-2 border-l-horizon-cyan">
-          <div className="text-[10px] font-mono text-slate-400 mb-1">NET CHANGE</div>
-          <div className="text-2xl font-black text-white flex items-center gap-1">
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl p-5 border border-[#1B133C]/10 shadow-sm hover:shadow-md transition-all">
+          <div className="text-[10px] font-mono text-[#1B133C]/60 mb-1">NET CHANGE</div>
+          <div className="font-['Instrument_Serif'] text-3xl text-[#1B133C] flex items-center gap-1">
             {netDiff <= 0 ? (
-              <span className="text-emerald-400 flex items-center">
+              <span className="text-emerald-700 flex items-center">
                 <ArrowDownRight className="w-5 h-5" />
                 {netDiffPct}%
               </span>
             ) : (
-              <span className="text-rose-400 flex items-center">
+              <span className="text-rose-700 flex items-center">
                 <ArrowUpRight className="w-5 h-5" />
                 +{netDiffPct}%
               </span>
             )}
           </div>
-          <div className="text-[11px] text-slate-400 font-mono mt-1">Since baseline v1</div>
+          <div className="text-[11px] text-[#1B133C]/50 font-mono mt-1">Since baseline v1</div>
         </div>
 
       </div>
 
       {/* Chart Canvas */}
-      <div className="horizon-card rounded-3xl p-6">
+      <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 border border-[#1B133C]/10 shadow-sm">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-sm font-bold text-white flex items-center gap-2">
-            <LineChart className="w-4 h-4 text-horizon-orange" />
+          <h3 className="text-sm font-bold text-[#1B133C] flex items-center gap-2">
+            <LineChart className="w-4 h-4 text-orange-500" />
             <span>{currentMonitor?.name} — Numerical Fluctuation Curve</span>
           </h3>
-          <span className="text-xs font-mono text-slate-400">
+          <span className="text-xs font-mono text-[#1B133C]/50">
             {chartData.length} Data Points Collected
           </span>
         </div>
 
         {chartData.length === 0 ? (
-          <div className="text-center py-16 text-slate-400 text-xs font-mono">
+          <div className="text-center py-16 text-[#1B133C]/50 text-xs font-mono">
             No numeric values recorded for this monitor yet.
             <br />
-            Configure a numeric CSS selector (e.g. <code className="text-horizon-orange">.price</code>) in monitor settings.
+            Configure a numeric CSS selector (e.g. <code className="text-orange-600">.price</code>) in monitor settings.
           </div>
         ) : (
           <div className="h-80 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
-                  <linearGradient id="horizonGlow" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#FF7A29" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#FF7A29" stopOpacity={0.0} />
+                  <linearGradient id="axonGlow" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#7C3AED" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#7C3AED" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(27,19,60,0.06)" vertical={false} />
                 <XAxis 
                   dataKey="version" 
-                  stroke="#64748B" 
+                  stroke="#1B133C" 
+                  opacity={0.6}
                   fontSize={11} 
                   tickLine={false} 
                   fontFamily="monospace"
                 />
                 <YAxis 
-                  stroke="#64748B" 
+                  stroke="#1B133C" 
+                  opacity={0.6}
                   fontSize={11} 
                   tickLine={false} 
                   fontFamily="monospace"
@@ -176,21 +179,22 @@ export default function NumberTracker({ monitors }) {
                 />
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: '#080C16', 
-                    borderColor: 'rgba(255, 122, 41, 0.3)', 
+                    backgroundColor: '#FFFFFF', 
+                    borderColor: 'rgba(27, 19, 60, 0.15)', 
                     borderRadius: '16px',
                     fontSize: '12px',
-                    fontFamily: 'monospace'
+                    fontFamily: 'monospace',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.08)'
                   }}
-                  itemStyle={{ color: '#FF7A29' }}
+                  itemStyle={{ color: '#7C3AED' }}
                 />
                 <Area 
                   type="monotone" 
                   dataKey="value" 
-                  stroke="#FF7A29" 
-                  strokeWidth={3} 
+                  stroke="#7C3AED" 
+                  strokeWidth={2.5} 
                   fillOpacity={1} 
-                  fill="url(#horizonGlow)" 
+                  fill="url(#axonGlow)" 
                 />
               </AreaChart>
             </ResponsiveContainer>

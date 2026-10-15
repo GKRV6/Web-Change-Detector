@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GitCompare, Sliders, Image, FileText, Sparkles, Hash, ArrowRight, ShieldCheck } from 'lucide-react';
+import { GitCompare, Sliders, Image, FileText, Sparkles, Hash } from 'lucide-react';
 import { fetchDiff, fetchSnapshots } from '../api';
 
 export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonitor }) {
@@ -63,30 +63,30 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
     }
   };
 
-  const currentMonitor = monitors.find(m => m.id === monitorId);
-
   return (
     <div className="space-y-6 text-left">
       
       {/* Header */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono text-horizon-orange mb-1">
+          <div className="flex items-center gap-2 text-xs font-mono text-purple-600 mb-1">
             <GitCompare className="w-4 h-4" />
             <span>VERSION ARTIFACT & DIFF STUDIO</span>
           </div>
-          <h2 className="text-2xl font-bold text-white">Visual, Pixel & Word-Level Text Diff</h2>
-          <p className="text-xs text-slate-400">
+          <h2 className="font-['Instrument_Serif'] text-3xl sm:text-4xl font-normal text-[#1B133C]">
+            Visual, Pixel & Word-Level Text Diff
+          </h2>
+          <p className="text-xs sm:text-sm text-[#1B133C]/60">
             Compare any two historical snapshots with interactive swipe slider, pixelmatch heatmap, or line-by-line diff.
           </p>
         </div>
 
         {/* View Mode Switcher */}
-        <div className="flex items-center gap-1 bg-horizon-900 p-1.5 rounded-2xl border border-white/10">
+        <div className="flex items-center gap-1 bg-white/80 p-1.5 rounded-2xl border border-[#1B133C]/10 shadow-sm">
           <button
             onClick={() => setViewMode('slider')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 ${
-              viewMode === 'slider' ? 'bg-horizon-orange text-white font-bold shadow-glow-orange' : 'text-slate-400 hover:text-white'
+            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+              viewMode === 'slider' ? 'bg-[#1B133C] text-white font-bold shadow-sm' : 'text-[#1B133C]/70 hover:text-[#1B133C]'
             }`}
           >
             <Sliders className="w-3.5 h-3.5" />
@@ -95,8 +95,8 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
 
           <button
             onClick={() => setViewMode('pixel')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 ${
-              viewMode === 'pixel' ? 'bg-horizon-orange text-white font-bold shadow-glow-orange' : 'text-slate-400 hover:text-white'
+            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+              viewMode === 'pixel' ? 'bg-[#1B133C] text-white font-bold shadow-sm' : 'text-[#1B133C]/70 hover:text-[#1B133C]'
             }`}
           >
             <Image className="w-3.5 h-3.5" />
@@ -105,8 +105,8 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
 
           <button
             onClick={() => setViewMode('text-unified')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 ${
-              viewMode === 'text-unified' ? 'bg-horizon-orange text-white font-bold shadow-glow-orange' : 'text-slate-400 hover:text-white'
+            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+              viewMode === 'text-unified' ? 'bg-[#1B133C] text-white font-bold shadow-sm' : 'text-[#1B133C]/70 hover:text-[#1B133C]'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -115,8 +115,8 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
 
           <button
             onClick={() => setViewMode('text-split')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 ${
-              viewMode === 'text-split' ? 'bg-horizon-orange text-white font-bold shadow-glow-orange' : 'text-slate-400 hover:text-white'
+            className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+              viewMode === 'text-split' ? 'bg-[#1B133C] text-white font-bold shadow-sm' : 'text-[#1B133C]/70 hover:text-[#1B133C]'
             }`}
           >
             <GitCompare className="w-3.5 h-3.5" />
@@ -126,18 +126,18 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
       </div>
 
       {/* Target & Version Selectors Bar */}
-      <div className="horizon-card rounded-2xl p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 grid grid-cols-1 md:grid-cols-3 gap-4 border border-[#1B133C]/10 shadow-sm">
         
         {/* Monitor dropdown */}
         <div>
-          <label className="block text-[11px] font-mono text-slate-400 mb-1">TARGET MONITOR</label>
+          <label className="block text-[11px] font-mono text-[#1B133C]/60 mb-1">TARGET MONITOR</label>
           <select
             value={monitorId}
             onChange={e => {
               setMonitorId(e.target.value);
               if (onSelectMonitor) onSelectMonitor(e.target.value);
             }}
-            className="w-full px-3 py-2 rounded-xl bg-horizon-950 border border-white/10 text-white text-xs focus:outline-none focus:border-horizon-orange font-mono"
+            className="w-full px-3 py-2 rounded-xl bg-white border border-[#1B133C]/15 text-[#1B133C] text-xs focus:outline-none focus:border-[#1B133C] font-mono shadow-sm cursor-pointer"
           >
             {monitors.map(m => (
               <option key={m.id} value={m.id}>{m.name}</option>
@@ -147,11 +147,11 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
 
         {/* Old Version v1 */}
         <div>
-          <label className="block text-[11px] font-mono text-slate-400 mb-1">BASELINE VERSION (OLD)</label>
+          <label className="block text-[11px] font-mono text-[#1B133C]/60 mb-1">BASELINE VERSION (OLD)</label>
           <select
             value={v1}
             onChange={e => setV1(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-horizon-950 border border-white/10 text-white text-xs focus:outline-none focus:border-horizon-orange font-mono"
+            className="w-full px-3 py-2 rounded-xl bg-white border border-[#1B133C]/15 text-[#1B133C] text-xs focus:outline-none focus:border-[#1B133C] font-mono shadow-sm cursor-pointer"
           >
             {snapshots.map(s => (
               <option key={s.id} value={s.id}>
@@ -163,11 +163,11 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
 
         {/* New Version v2 */}
         <div>
-          <label className="block text-[11px] font-mono text-slate-400 mb-1">COMPARISON VERSION (NEW)</label>
+          <label className="block text-[11px] font-mono text-[#1B133C]/60 mb-1">COMPARISON VERSION (NEW)</label>
           <select
             value={v2}
             onChange={e => setV2(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl bg-horizon-950 border border-white/10 text-white text-xs focus:outline-none focus:border-horizon-orange font-mono"
+            className="w-full px-3 py-2 rounded-xl bg-white border border-[#1B133C]/15 text-[#1B133C] text-xs focus:outline-none focus:border-[#1B133C] font-mono shadow-sm cursor-pointer"
           >
             {snapshots.map(s => (
               <option key={s.id} value={s.id}>
@@ -181,37 +181,37 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
 
       {/* AI One-line Summary Strip */}
       {diffData?.newSnapshot?.aiSummary && (
-        <div className="p-4 rounded-2xl bg-gradient-to-r from-horizon-orange/15 to-transparent border border-horizon-orange/30 flex items-center justify-between gap-4">
+        <div className="p-4 rounded-2xl bg-purple-50/80 border border-purple-200/70 flex items-center justify-between gap-4 text-[#1B133C]">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-horizon-orange/20 text-horizon-orange">
+            <div className="p-2 rounded-xl bg-purple-100 text-purple-700">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-[11px] font-mono text-horizon-orange tracking-wider uppercase font-bold">
+              <div className="text-[11px] font-mono text-purple-900 tracking-wider uppercase font-bold">
                 AI Change Synthesis ({diffData.newSnapshot.changePercent}% diff)
               </div>
-              <p className="text-sm font-medium text-white leading-relaxed">
+              <p className="text-sm font-medium text-[#1B133C] leading-relaxed">
                 {diffData.newSnapshot.aiSummary}
               </p>
             </div>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-slate-400 bg-horizon-950/80 px-3 py-1.5 rounded-xl border border-white/5">
-            <Hash className="w-3.5 h-3.5 text-horizon-orange" />
+          <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-[#1B133C]/60 bg-white px-3 py-1.5 rounded-xl border border-[#1B133C]/10 shadow-sm">
+            <Hash className="w-3.5 h-3.5 text-orange-500" />
             <span>SHA: {diffData.newSnapshot.contentHash.slice(0, 10)}...</span>
           </div>
         </div>
       )}
 
       {/* DIFF CANVAS DISPLAY */}
-      <div className="horizon-card rounded-3xl p-5 min-h-[500px]">
+      <div className="bg-white/80 backdrop-blur-md rounded-3xl p-5 min-h-[500px] border border-[#1B133C]/10 shadow-sm">
         {loading ? (
-          <div className="flex flex-col items-center justify-center min-h-[400px] text-slate-400 text-xs font-mono">
-            <div className="w-8 h-8 border-2 border-horizon-orange border-t-transparent rounded-full animate-spin mb-3" />
+          <div className="flex flex-col items-center justify-center min-h-[400px] text-[#1B133C]/60 text-xs font-mono">
+            <div className="w-8 h-8 border-2 border-[#1B133C] border-t-transparent rounded-full animate-spin mb-3" />
             <span>Computing pixel and text differential...</span>
           </div>
         ) : !diffData ? (
-          <div className="text-center p-12 text-slate-400 text-xs">
+          <div className="text-center p-12 text-[#1B133C]/50 text-xs">
             No snapshots found for comparison.
           </div>
         ) : (
@@ -220,14 +220,14 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
             {/* 1. VISUAL SWIPE SLIDER */}
             {viewMode === 'slider' && (
               <div className="space-y-4">
-                <div className="flex items-center justify-between text-xs font-mono text-slate-400">
-                  <span className="text-slate-300">← Baseline (Old Version)</span>
-                  <span className="text-horizon-orange font-bold">Slide to Reveal ({sliderPos}%)</span>
-                  <span className="text-horizon-orange">Comparison (New Version) →</span>
+                <div className="flex items-center justify-between text-xs font-mono text-[#1B133C]/60">
+                  <span className="text-[#1B133C]">← Baseline (Old Version)</span>
+                  <span className="text-orange-600 font-bold">Slide to Reveal ({sliderPos}%)</span>
+                  <span className="text-[#1B133C]">Comparison (New Version) →</span>
                 </div>
 
                 {/* Draggable Slider Viewport */}
-                <div className="relative w-full h-[520px] bg-horizon-950 rounded-2xl overflow-hidden border border-white/10 select-none">
+                <div className="relative w-full h-[520px] bg-slate-50 rounded-2xl overflow-hidden border border-[#1B133C]/10 select-none">
                   
                   {/* New Image (Base Layer) */}
                   <img
@@ -239,7 +239,7 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
                   {/* Old Image (Clipped Layer on Left) */}
                   <div
                     style={{ width: `${sliderPos}%` }}
-                    className="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-horizon-orange shadow-2xl"
+                    className="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-orange-500 shadow-xl"
                   >
                     <img
                       src={diffData.oldSnapshot.screenshotUrl || '/horizonx-hero.png'}
@@ -262,9 +262,9 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
                   {/* Vertical Divider Handle Line */}
                   <div
                     style={{ left: `${sliderPos}%` }}
-                    className="absolute inset-y-0 -ml-[1px] w-[2px] bg-horizon-orange pointer-events-none z-20 flex items-center justify-center shadow-glow-orange"
+                    className="absolute inset-y-0 -ml-[1px] w-[2px] bg-orange-500 pointer-events-none z-20 flex items-center justify-center shadow-md"
                   >
-                    <div className="w-8 h-8 rounded-full bg-horizon-orange text-white flex items-center justify-center text-xs font-black shadow-lg">
+                    <div className="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs font-black shadow-lg">
                       ↔
                     </div>
                   </div>
@@ -276,14 +276,14 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
             {/* 2. PIXEL DIFF HIGHLIGHT (Pixelmatch) */}
             {viewMode === 'pixel' && (
               <div className="space-y-4">
-                <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+                <div className="flex items-center justify-between text-xs font-mono text-[#1B133C]/60">
                   <span>Pixel Diff Highlight Area</span>
-                  <span className="text-horizon-orange font-semibold">
+                  <span className="text-orange-600 font-semibold">
                     {diffData.visualDiff?.diffPercent ?? 0}% Changed Pixels ({diffData.visualDiff?.numDiffPixels ?? 0} px)
                   </span>
                 </div>
 
-                <div className="relative w-full h-[520px] bg-horizon-950 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center">
+                <div className="relative w-full h-[520px] bg-slate-50 rounded-2xl overflow-hidden border border-[#1B133C]/10 flex items-center justify-center">
                   {diffData.visualDiff?.diffScreenshotUrl ? (
                     <img
                       src={diffData.visualDiff.diffScreenshotUrl}
@@ -291,7 +291,7 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
                       className="w-full h-full object-contain"
                     />
                   ) : (
-                    <div className="text-center p-8 text-slate-400 text-xs font-mono">
+                    <div className="text-center p-8 text-[#1B133C]/50 text-xs font-mono">
                       Visual pixel diff unavailable. Both versions share identical visual rendering.
                     </div>
                   )}
@@ -302,21 +302,21 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
             {/* 3. UNIFIED TEXT DIFF */}
             {viewMode === 'text-unified' && (
               <div className="space-y-4">
-                <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-white/10 pb-3">
+                <div className="flex items-center justify-between text-xs font-mono text-[#1B133C]/60 border-b border-[#1B133C]/10 pb-3">
                   <div className="flex items-center gap-4">
-                    <span className="text-emerald-400">+{diffData.textDiff?.stats?.additions || 0} additions</span>
-                    <span className="text-rose-400">-{diffData.textDiff?.stats?.deletions || 0} deletions</span>
+                    <span className="text-emerald-700 font-bold">+{diffData.textDiff?.stats?.additions || 0} additions</span>
+                    <span className="text-rose-700 font-bold">-{diffData.textDiff?.stats?.deletions || 0} deletions</span>
                   </div>
                   <span>Unified Text Patch</span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-horizon-950 font-mono text-xs overflow-x-auto max-h-[500px] space-y-1">
+                <div className="p-4 rounded-2xl bg-white border border-[#1B133C]/10 font-mono text-xs overflow-x-auto max-h-[500px] space-y-1 shadow-inner">
                   {diffData.textDiff?.lineDiff?.map((part, index) => {
                     const color = part.added
-                      ? 'bg-emerald-500/15 text-emerald-300 border-l-2 border-emerald-500 pl-2'
+                      ? 'bg-emerald-50 text-emerald-800 border-l-2 border-emerald-500 pl-2'
                       : part.removed
-                      ? 'bg-rose-500/15 text-rose-300 border-l-2 border-rose-500 pl-2'
-                      : 'text-slate-400 pl-2';
+                      ? 'bg-rose-50 text-rose-800 border-l-2 border-rose-500 pl-2'
+                      : 'text-[#1B133C]/70 pl-2';
                     const prefix = part.added ? '+ ' : part.removed ? '- ' : '  ';
 
                     return (
@@ -336,22 +336,22 @@ export default function DiffStudio({ monitors, selectedMonitorId, onSelectMonito
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Left: Old */}
                 <div className="space-y-2">
-                  <div className="text-xs font-mono text-slate-400 flex items-center justify-between p-2 rounded-xl bg-horizon-950 border border-white/5">
+                  <div className="text-xs font-mono text-[#1B133C]/70 flex items-center justify-between p-2 rounded-xl bg-white border border-[#1B133C]/10 shadow-sm">
                     <span>Baseline (Old Version)</span>
-                    <span className="text-rose-400">v{diffData.oldSnapshot.version}</span>
+                    <span className="text-rose-700 font-bold">v{diffData.oldSnapshot.version}</span>
                   </div>
-                  <pre className="p-4 rounded-2xl bg-horizon-950 font-mono text-xs text-slate-300 overflow-auto max-h-[460px] whitespace-pre-wrap leading-relaxed border border-white/5">
+                  <pre className="p-4 rounded-2xl bg-white border border-[#1B133C]/10 font-mono text-xs text-[#1B133C] overflow-auto max-h-[460px] whitespace-pre-wrap leading-relaxed shadow-inner">
                     {diffData.oldSnapshot.cleanedText || 'No text extracted'}
                   </pre>
                 </div>
 
                 {/* Right: New */}
                 <div className="space-y-2">
-                  <div className="text-xs font-mono text-slate-400 flex items-center justify-between p-2 rounded-xl bg-horizon-950 border border-white/5">
+                  <div className="text-xs font-mono text-[#1B133C]/70 flex items-center justify-between p-2 rounded-xl bg-white border border-[#1B133C]/10 shadow-sm">
                     <span>Comparison (New Version)</span>
-                    <span className="text-emerald-400">v{diffData.newSnapshot.version}</span>
+                    <span className="text-emerald-700 font-bold">v{diffData.newSnapshot.version}</span>
                   </div>
-                  <pre className="p-4 rounded-2xl bg-horizon-950 font-mono text-xs text-slate-200 overflow-auto max-h-[460px] whitespace-pre-wrap leading-relaxed border border-white/5">
+                  <pre className="p-4 rounded-2xl bg-white border border-[#1B133C]/10 font-mono text-xs text-[#1B133C] overflow-auto max-h-[460px] whitespace-pre-wrap leading-relaxed shadow-inner">
                     {diffData.newSnapshot.cleanedText || 'No text extracted'}
                   </pre>
                 </div>
