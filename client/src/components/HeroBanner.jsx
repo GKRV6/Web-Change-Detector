@@ -1,47 +1,48 @@
 import React from 'react';
-import { ArrowRight, Eye, Database, Filter, Cpu } from 'lucide-react';
+import { ArrowRight, Eye, Database, Filter, Cpu, Plus } from 'lucide-react';
 
-export default function HeroBanner({ onOpenAddModal, onExperienceClick, metrics, onOpenEarlyAccess }) {
+export default function HeroBanner({ onOpenAddModal, onExperienceClick, metrics }) {
   return (
     <section className="relative min-h-[85vh] flex flex-col justify-between pt-8 pb-12">
       {/* Hero content — centered */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex-1 flex flex-col items-center justify-center mt-4 mb-8">
         
-        {/* YC Badge */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-xl border border-[#1B133C]/10 bg-white/70 backdrop-blur-sm px-4 py-2 text-sm font-medium text-[#1B133C] shadow-sm">
-          <div className="bg-orange-500 rounded w-5 h-5 flex items-center justify-center text-white font-bold text-xs select-none">
-            Y
-          </div>
-          <span>Funded by Y Combinator</span>
+        {/* Status Badge */}
+        <div className="mb-6 inline-flex items-center gap-2 rounded-xl border border-[#1B133C]/10 bg-white/70 backdrop-blur-sm px-4 py-2 text-xs font-mono font-medium text-[#1B133C] shadow-sm">
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="font-semibold tracking-wider uppercase text-[11px]">
+            Autonomous Web Change Intelligence
+          </span>
         </div>
 
-        {/* Heading matching Image 1 */}
+        {/* Heading */}
         <h1 className="font-['Instrument_Serif'] text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight text-[#1B133C] max-w-4xl text-center">
-          Deploy digital workers
+          Detect changes that matter
           <br />
-          for mundane workflows
+          <em className="italic font-normal">and filter out the noise</em>
         </h1>
 
-        {/* Subtitle matching Image 1 */}
+        {/* Subtitle */}
         <p className="mt-5 sm:mt-6 max-w-3xl text-xs sm:text-sm md:text-base leading-relaxed text-[#1B133C]/70 text-center">
-          Eliminate your tedious browser work and 10x your team&apos;s capacity. Put intelligent agents on every routine process so you grow faster and deliver more for clients — effortlessly.
+          Autonomous headless sandboxes tracking DOM mutations, visual regressions, and price thresholds with real-time noise suppression, request coalescing, and instant alerts.
         </p>
 
         {/* CTA Buttons */}
         <div className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-4">
           <button
-            onClick={onOpenEarlyAccess}
-            className="rounded-xl bg-[#FEFEFE] px-8 py-3.5 text-sm font-semibold text-[#1B133C] shadow-[0px_4px_12px_rgba(0,0,0,0.15)] hover:shadow-[0px_6px_16px_rgba(0,0,0,0.2)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer"
+            onClick={onExperienceClick}
+            className="rounded-xl bg-[#FEFEFE] px-8 py-3.5 text-sm font-semibold text-[#1B133C] shadow-[0px_4px_12px_rgba(0,0,0,0.15)] hover:shadow-[0px_6px_16px_rgba(0,0,0,0.2)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center gap-2 cursor-pointer"
           >
-            Get Early Access
+            <span>Experience Visual Picker</span>
+            <Eye className="w-4 h-4 text-orange-500" />
           </button>
 
           <button
-            onClick={onExperienceClick}
+            onClick={onOpenAddModal}
             className="rounded-xl bg-[#1B133C] hover:bg-[#1B133C]/90 text-white px-8 py-3.5 text-sm font-semibold shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center gap-2 cursor-pointer"
           >
-            <span>Experience Visual Picker</span>
-            <ArrowRight className="w-4 h-4 text-orange-400" />
+            <Plus className="w-4 h-4 text-orange-400" />
+            <span>Add Monitor Target</span>
           </button>
         </div>
 
