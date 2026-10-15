@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import AxonApp from './axon/AxonApp';
 import Navbar from './components/Navbar';
 import HeroBanner from './components/HeroBanner';
 import MonitorList from './components/MonitorList';
@@ -13,7 +12,6 @@ import AlertsHub from './components/AlertsHub';
 import { fetchMonitors, fetchQueueStatus } from './api';
 
 export default function App() {
-  const [view, setView] = useState('axon'); // 'axon' is the default landing page
   const [activeTab, setActiveTab] = useState('dashboard');
   const [monitors, setMonitors] = useState([]);
   const [queueMetrics, setQueueMetrics] = useState(null);
@@ -21,21 +19,18 @@ export default function App() {
   const [selectedMonitorForDiff, setSelectedMonitorForDiff] = useState('');
   const [selectedUrlForPicker, setSelectedUrlForPicker] = useState('');
 
-  // Initial load and periodic telemetry polling (only if in change-detector or active)
+  // Initial load and periodic telemetry polling
   useEffect(() => {
-    if (view === 'change-detector') {
-      loadData();
-      const interval = setInterval(loadData, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [view]);
+    loadData();
+    const interval = setInterval(loadData, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Handle URL query parameters (e.g. from Bookmarklet)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const addUrl = params.get('add_url');
     if (addUrl) {
-      setView('change-detector');
       setSelectedUrlForPicker(addUrl);
       setIsAddModalOpen(true);
     }
@@ -75,38 +70,17 @@ export default function App() {
     setActiveTab('picker');
   };
 
-  // If in Axon landing mode (default), show the Axon landing page
-  if (view === 'axon') {
-    return <AxonApp onOpenChangeDetector={() => setView('change-detector')} />;
-  }
-
-  // Otherwise show the Change Detector suite in the new Axon template
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F7F6FC] via-white to-[#F2EFFE] text-[#1B133C] flex flex-col font-sans selection:bg-orange-500 selection:text-white">
-      {/* Return to Axon bar */}
-      <div className="bg-white/80 backdrop-blur-md border-b border-[#1B133C]/10 px-4 sm:px-8 py-2.5 text-xs flex items-center justify-between text-[#1B133C] shadow-xs">
-        <div className="flex items-center gap-2">
-          <span className="font-semibold text-[#1B133C]">Axon Platform Companion:</span>
-          <span className="text-[#1B133C]/70">Website Change Detector Suite</span>
-        </div>
-        <button
-          onClick={() => setView('axon')}
-          className="bg-[#1B133C] hover:bg-[#1B133C]/90 text-white font-medium px-3.5 py-1.5 rounded-xl transition-all cursor-pointer text-xs flex items-center gap-1.5 shadow-sm active:scale-95"
-        >
-          <span>← Back to Axon Landing Page</span>
-        </button>
-      </div>
-
       {/* Top Navbar */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenAddModal={() => setIsAddModalOpen(true)}
         queueMetrics={queueMetrics?.queue}
-        onBackToLanding={() => setView('axon')}
       />
 
-      {/* Hero Banner (visible on dashboard or can be collapsed) */}
+      {/* Hero Banner (visible on dashboard) */}
       {activeTab === 'dashboard' && (
         <HeroBanner
           onOpenAddModal={() => setIsAddModalOpen(true)}
@@ -168,11 +142,11 @@ export default function App() {
         onCreated={handleMonitorCreated}
       />
 
-      {/* Footer matching Axon template */}
+      {/* Footer in clean light frosted styling */}
       <footer className="border-t border-[#1B133C]/10 bg-white/70 backdrop-blur-md py-8 text-center text-xs font-mono text-[#1B133C]/60">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-[#1B133C] font-bold">Axon</span>
+            <span className="text-[#1B133C] font-bold">Horizon</span>
             <span>— Autonomous Web Change Intelligence Suite</span>
           </div>
           <div>

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Plus, Eye, GitCompare, LineChart, ShieldCheck, Bell, ChevronDown, ArrowLeft } from 'lucide-react';
+import { Plus, Eye, GitCompare, LineChart, ShieldCheck, Bell } from 'lucide-react';
 
-export default function Navbar({ activeTab, setActiveTab, onOpenAddModal, queueMetrics, onBackToLanding }) {
+export default function Navbar({ activeTab, setActiveTab, onOpenAddModal, queueMetrics }) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#1B133C]/10 bg-white/80 backdrop-blur-md transition-all shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
         
-        {/* Axon Logo & Change Intelligence */}
+        {/* Logo & Change Intelligence */}
         <div 
           onClick={() => setActiveTab('dashboard')}
           className="flex items-center gap-3 cursor-pointer group shrink-0"
@@ -26,13 +26,13 @@ export default function Navbar({ activeTab, setActiveTab, onOpenAddModal, queueM
           </div>
           <div className="flex flex-col">
             <div className="text-xl font-bold tracking-tight text-[#1B133C] flex items-center gap-1.5">
-              <span>Axon</span>
+              <span>Horizon</span>
               <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-[#1B133C]/5 text-[#1B133C]/80 border border-[#1B133C]/10">
                 Change Intelligence
               </span>
             </div>
             <span className="text-[10px] tracking-wider text-[#1B133C]/50 uppercase font-mono">
-              Web Intelligence Suite
+              Autonomous Web Monitor
             </span>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenAddModal, queueM
         </nav>
 
         {/* Right action & system telemetry */}
-        <div className="flex items-center gap-2.5 shrink-0">
+        <div className="flex items-center gap-3 shrink-0">
           {/* Live Scheduler telemetry pill */}
           <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-[#1B133C]/10 text-[11px] font-mono text-[#1B133C] shadow-sm">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -129,18 +129,6 @@ export default function Navbar({ activeTab, setActiveTab, onOpenAddModal, queueM
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>Monitor URL</span>
           </button>
-
-          {/* Back to Axon Landing Page */}
-          {onBackToLanding && (
-            <button
-              onClick={onBackToLanding}
-              className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-white/70 hover:bg-white text-[#1B133C] border border-[#1B133C]/10 text-xs font-medium shadow-sm transition-all cursor-pointer"
-              title="Return to Axon Home Landing Page"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Landing Page</span>
-            </button>
-          )}
         </div>
 
       </div>

@@ -13,10 +13,10 @@
       "numberSelector": "",
       "status": "OK",
       "statusReason": "Checked. No meaningful changes detected.",
-      "lastChecked": "2026-10-15T03:42:36.751Z",
+      "lastChecked": "2026-10-15T03:58:11.559Z",
       "lastChanged": "2026-10-14T19:08:46.776Z",
-      "nextCheck": "2026-10-15T03:58:09.751Z",
-      "responseTimeMs": 1629,
+      "nextCheck": "2026-10-15T04:13:29.558Z",
+      "responseTimeMs": 165,
       "active": true,
       "consecutiveFailures": 0,
       "tags": [],
@@ -507,7 +507,7 @@
     }
   ],
   "systemMetrics": {
-    "totalChecksPerformed": 1595,
+    "totalChecksPerformed": 1596,
     "coalescedRequestsSaved": 616,
     "noiseAlertsSuppressed": 983,
     "activeMonitorsCount": 5,
