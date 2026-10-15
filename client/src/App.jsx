@@ -9,6 +9,7 @@ import DiffStudio from './components/DiffStudio';
 import NumberTracker from './components/NumberTracker';
 import ArchitectureHub from './components/ArchitectureHub';
 import AlertsHub from './components/AlertsHub';
+import EarlyAccessModal from './axon/EarlyAccessModal';
 import { fetchMonitors, fetchQueueStatus } from './api';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
   const [monitors, setMonitors] = useState([]);
   const [queueMetrics, setQueueMetrics] = useState(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEarlyAccessOpen, setIsEarlyAccessOpen] = useState(false);
   const [selectedMonitorForDiff, setSelectedMonitorForDiff] = useState('');
   const [selectedUrlForPicker, setSelectedUrlForPicker] = useState('');
 
@@ -80,12 +82,13 @@ export default function App() {
         queueMetrics={queueMetrics?.queue}
       />
 
-      {/* Hero Banner (visible on dashboard) */}
+      {/* Hero Banner with looping motion video (visible on dashboard) */}
       {activeTab === 'dashboard' && (
         <HeroBanner
           onOpenAddModal={() => setIsAddModalOpen(true)}
           onExperienceClick={() => setActiveTab('picker')}
           metrics={queueMetrics?.metrics}
+          onOpenEarlyAccess={() => setIsEarlyAccessOpen(true)}
         />
       )}
 
@@ -140,6 +143,12 @@ export default function App() {
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
         onCreated={handleMonitorCreated}
+      />
+
+      {/* Early Access Waitlist Modal */}
+      <EarlyAccessModal
+        isOpen={isEarlyAccessOpen}
+        onClose={() => setIsEarlyAccessOpen(false)}
       />
 
       {/* Footer in clean light frosted styling */}
