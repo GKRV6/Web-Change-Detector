@@ -9,6 +9,7 @@ import DiffStudio from './components/DiffStudio';
 import NumberTracker from './components/NumberTracker';
 import ArchitectureHub from './components/ArchitectureHub';
 import AlertsHub from './components/AlertsHub';
+import MotionBackground from './components/MotionBackground';
 import { fetchMonitors, fetchQueueStatus } from './api';
 
 export default function App() {
@@ -90,31 +91,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative text-[#1B133C] flex flex-col font-sans selection:bg-orange-500 selection:text-white">
-      {/* Full-Viewport Looping Motion Video (glides smoothly down while scrolling down) */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute -top-[25vh] -left-[3vw] w-[106vw] h-[155vh] will-change-transform transition-transform duration-100 ease-out"
-          style={{
-            transform: `translate3d(0, ${Math.min(scrollY * 0.22, 220)}px, 0)`
-          }}
-        >
-          <video
-            className="w-full h-full object-cover will-change-[object-position] transition-[object-position] duration-150 ease-out scale-105"
-            style={{
-              filter: 'saturate(1.48) contrast(1.08) brightness(1.02)',
-              objectPosition: `center ${Math.min(scrollY * 0.05, 45)}%`
-            }}
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260714_113715_c7e0daa0-8bdd-4486-a2da-040901f8f0ea.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-        </div>
-        {/* Soft frosted ambient overlays: vibrant motion shines through with crisp text legibility */}
-        <div className="absolute inset-0 bg-white/20 backdrop-blur-[0.5px] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/35 pointer-events-none" />
-      </div>
+      {/* Seamless Dual-Video Crossfading Motion Background with Scroll Parallax */}
+      <MotionBackground scrollY={scrollY} />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Top Navbar */}
