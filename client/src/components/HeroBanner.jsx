@@ -57,7 +57,7 @@ export default function HeroBanner({ onOpenAddModal, onExperienceClick, metrics 
               <Eye className="w-4 h-4 text-orange-500" />
             </div>
             <div className="font-['Instrument_Serif'] text-4xl font-normal text-[#1B133C]">
-              {metrics?.activeMonitorsCount ?? 5}
+              {metrics?.activeMonitorsCount ?? 0}
             </div>
             <div className="text-[11px] text-[#1B133C]/50 mt-1">Headless scheduled</div>
           </div>
@@ -68,7 +68,7 @@ export default function HeroBanner({ onOpenAddModal, onExperienceClick, metrics 
               <Database className="w-4 h-4 text-emerald-600" />
             </div>
             <div className="font-['Instrument_Serif'] text-4xl font-normal text-[#1B133C]">
-              {metrics?.coalescedRequestsSaved ?? 616}
+              {metrics?.coalescedRequestsSaved ?? 0}
             </div>
             <div className="text-[11px] text-emerald-700 font-medium mt-1">Request deduplication pool</div>
           </div>
@@ -79,7 +79,7 @@ export default function HeroBanner({ onOpenAddModal, onExperienceClick, metrics 
               <Filter className="w-4 h-4 text-amber-600" />
             </div>
             <div className="font-['Instrument_Serif'] text-4xl font-normal text-[#1B133C]">
-              {metrics?.noiseAlertsSuppressed ?? 983}
+              {metrics?.noiseAlertsSuppressed ?? 0}
             </div>
             <div className="text-[11px] text-amber-700 font-medium mt-1">Timestamps & ads suppressed</div>
           </div>
@@ -90,7 +90,7 @@ export default function HeroBanner({ onOpenAddModal, onExperienceClick, metrics 
               <Cpu className="w-4 h-4 text-purple-600" />
             </div>
             <div className="font-['Instrument_Serif'] text-4xl font-normal text-[#1B133C]">
-              {metrics?.totalChecksPerformed ?? 1596}
+              {metrics?.totalChecksPerformed ?? 0}
             </div>
             <div className="text-[11px] text-[#1B133C]/50 mt-1">Zero domain spamming</div>
           </div>
