@@ -156,9 +156,12 @@ class SchedulerQueue {
     let crawlResult = null;
     let wasCoalesced = false;
 
-    // Check Question 2: URL Request Coalescing
-    if (this.urlFetchCache.has(monitor.url)) {
-      const cached = this.urlFetchCache.get(monitor.url);
+    // URL Request Coalescing Key: Include selector configuration to prevent cross-contamination
+    const ignoreKey = Array.isArray(monitor.ignoreSelectors) ? monitor.ignoreSelectors.slice().sort().join(',') : '';
+    const coalescingKey = `${monitor.url}::${monitor.watchSelector || ''}::${ignoreKey}::${monitor.numberSelector || ''}`;
+
+    if (this.urlFetchCache.has(coalescingKey)) {
+      const cached = this.urlFetchCache.get(coalescingKey);
       if (now - cached.timestamp <= this.cacheWindowMs) {
         crawlResult = cached.result;
         wasCoalesced = true;
@@ -176,9 +179,9 @@ class SchedulerQueue {
         screenshotName: `snap_${monitor.id}_${Date.now()}.png`
       });
 
-      // Cache valid results for other monitors targeting this URL
+      // Cache valid results for other monitors targeting this URL with identical extraction rules
       if (crawlResult.status === 'OK') {
-        this.urlFetchCache.set(monitor.url, {
+        this.urlFetchCache.set(coalescingKey, {
           timestamp: Date.now(),
           result: crawlResult
         });
@@ -192,6 +195,19 @@ class SchedulerQueue {
     const jitterSeconds = Math.floor((Math.random() * 0.1 - 0.05) * intervalMinutes * 60);
     const nextCheckMs = Date.now() + intervalMinutes * 60 * 1000 + jitterSeconds * 1000;
     const nextCheckIso = new Date(nextCheckMs).toISOString();
+
+    // Handle non-fatal selector warning (e.g. element not mounted or renamed)
+    if (crawlResult.status === 'WARNING') {
+      db.updateMonitor(monitor.id, {
+        status: 'WARNING',
+        statusReason: crawlResult.statusReason,
+        lastChecked: new Date().toISOString(),
+        nextCheck: nextCheckIso,
+        responseTimeMs: crawlResult.responseTimeMs,
+        consecutiveFailures: 0
+      });
+      return;
+    }
 
     // Question 1: Handle Outage & Anti-Bot Block
     if (crawlResult.status !== 'OK') {

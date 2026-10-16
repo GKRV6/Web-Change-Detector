@@ -81,12 +81,31 @@ export async function generateVisualDiff(oldScreenshotUrl, newScreenshotUrl) {
     const width = Math.min(img1.width, img2.width);
     const height = Math.min(img1.height, img2.height);
 
+    if (width <= 0 || height <= 0) {
+      return {
+        available: false,
+        reason: 'Invalid screenshot dimensions for diff'
+      };
+    }
+
     const diff = new PNG({ width, height });
 
-    // Compare with pixelmatch
+    // Normalize both image buffers to exact (width x height) stride to prevent line skew
+    const buf1 = Buffer.alloc(width * height * 4);
+    const buf2 = Buffer.alloc(width * height * 4);
+
+    for (let y = 0; y < height; y++) {
+      const src1Start = (y * img1.width) * 4;
+      img1.data.copy(buf1, y * width * 4, src1Start, src1Start + (width * 4));
+
+      const src2Start = (y * img2.width) * 4;
+      img2.data.copy(buf2, y * width * 4, src2Start, src2Start + (width * 4));
+    }
+
+    // Compare with pixelmatch using aligned scanlines
     const numDiffPixels = pixelmatch(
-      img1.data,
-      img2.data,
+      buf1,
+      buf2,
       diff.data,
       width,
       height,
@@ -159,15 +178,19 @@ export function generateAiSummary({
     .filter(Boolean);
 
   if (addedLines.length > 0 && removedLines.length > 0) {
-    const snippetAdd = addedLines[0].slice(0, 50);
-    const snippetRem = removedLines[0].slice(0, 50);
-    return `Content updated (${changePercent}% diff): replaced "${snippetRem}..." with "${snippetAdd}...".`;
+    const rawAdd = addedLines[0];
+    const rawRem = removedLines[0];
+    const snippetAdd = rawAdd.length > 50 ? rawAdd.slice(0, 50) + '...' : rawAdd;
+    const snippetRem = rawRem.length > 50 ? rawRem.slice(0, 50) + '...' : rawRem;
+    return `Content updated (${changePercent}% diff): replaced "${snippetRem}" with "${snippetAdd}".`;
   } else if (addedLines.length > 0) {
-    const snippet = addedLines[0].slice(0, 60);
-    return `Added new content (${changePercent}% diff): "${snippet}...".`;
+    const rawAdd = addedLines[0];
+    const snippet = rawAdd.length > 60 ? rawAdd.slice(0, 60) + '...' : rawAdd;
+    return `Added new content (${changePercent}% diff): "${snippet}".`;
   } else if (removedLines.length > 0) {
-    const snippet = removedLines[0].slice(0, 60);
-    return `Removed content (${changePercent}% diff): "${snippet}...".`;
+    const rawRem = removedLines[0];
+    const snippet = rawRem.length > 60 ? rawRem.slice(0, 60) + '...' : rawRem;
+    return `Removed content (${changePercent}% diff): "${snippet}".`;
   }
 
   return `Page updated with ${changePercent}% textual difference.`;
