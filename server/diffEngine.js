@@ -102,14 +102,14 @@ export async function generateVisualDiff(oldScreenshotUrl, newScreenshotUrl) {
       img2.data.copy(buf2, y * width * 4, src2Start, src2Start + (width * 4));
     }
 
-    // Compare with pixelmatch using aligned scanlines
+    // Compare with pixelmatch using aligned scanlines (ignoring font subpixel anti-aliasing)
     const numDiffPixels = pixelmatch(
       buf1,
       buf2,
       diff.data,
       width,
       height,
-      { threshold: 0.1, diffColor: [255, 122, 41] } // Horizon orange highlight!
+      { threshold: 0.1, diffColor: [255, 122, 41], includeAA: false }
     );
 
     const totalPixels = width * height;

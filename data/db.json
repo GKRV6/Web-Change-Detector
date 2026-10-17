@@ -21,10 +21,10 @@
       "numberSelector": "",
       "status": "OK",
       "statusReason": "Checked. No meaningful changes detected.",
-      "lastChecked": "2026-10-16T18:23:01.191Z",
-      "lastChanged": "2026-10-16T17:09:43.886Z",
-      "nextCheck": "2026-10-16T18:24:02.190Z",
-      "responseTimeMs": 1033,
+      "lastChecked": "2026-10-17T04:07:55.952Z",
+      "lastChanged": "2026-10-16T18:24:13.915Z",
+      "nextCheck": "2026-10-17T04:08:56.951Z",
+      "responseTimeMs": 15514,
       "active": true,
       "consecutiveFailures": 0,
       "tags": [
@@ -35,6 +35,20 @@
     }
   ],
   "snapshots": [
+    {
+      "id": "snap-mon-1792038901155-v73",
+      "monitorId": "mon-1792038901155",
+      "version": 73,
+      "timestamp": "2026-10-16T18:24:13.915Z",
+      "contentHash": "690546e7bf7f003b4c325d9e4defd3acc5db044ae18afff75e14cfa3bdfa6b3f",
+      "textSnapshot": "Untitled document\nRequest edit access\n \nShare\nSign in\nFileEditViewToolsHelp\nDocument tabs\n \nTab 1\nHeadings that you add to the document will appear here.\nSome fonts could not be loaded. Try reloading.\nClose\nTurn on screen reader support\nTo enable screen reader support, press Ctrl+Alt+Z To learn about keyboard shortcuts, press Ctrl+slash\nBanner hidden ",
+      "cleanedText": "Untitled document\nRequest edit access\nShare\nSign in\nFileEditViewToolsHelp\nDocument tabs\nTab 1\nHeadings that you add to the document will appear here.\nSome fonts could not be loaded. Try reloading.\nClose\nBanner hidden",
+      "screenshotUrl": "/screenshots/snap_mon-1792038901155_1792175047432.png",
+      "status": "OK",
+      "changePercent": 85.4,
+      "aiSummary": "Content updated (85.4% diff): replaced \"This browser version is no longer supported. Pleas...\" with \"Request edit access\".",
+      "extractedNumber": 1
+    },
     {
       "id": "snap-mon-1792038901155-v72",
       "monitorId": "mon-1792038901155",
@@ -1046,6 +1060,19 @@
   ],
   "alerts": [
     {
+      "id": "alert-1792175053924-967",
+      "monitorId": "mon-1792038901155",
+      "monitorName": "Google dox",
+      "timestamp": "2026-10-16T18:24:13.924Z",
+      "type": "CONTENT_CHANGE",
+      "title": "Meaningful Change Detected on Google dox",
+      "summary": "Content updated (85.4% diff): replaced \"This browser version is no longer supported. Pleas...\" with \"Request edit access\".",
+      "diffPercent": 85.4,
+      "sentTo": "HorizonX Notification Center",
+      "delivered": true,
+      "snapshotId": "snap-mon-1792038901155-v73"
+    },
+    {
       "id": "alert-1792170583902-913",
       "monitorId": "mon-1792038901155",
       "monitorName": "Google dox",
@@ -1528,8 +1555,8 @@
     }
   ],
   "systemMetrics": {
-    "totalChecksPerformed": 4799,
-    "coalescedRequestsSaved": 834,
+    "totalChecksPerformed": 4811,
+    "coalescedRequestsSaved": 836,
     "noiseAlertsSuppressed": 1091,
     "activeMonitorsCount": 5,
     "domainCooldownQueue": 0

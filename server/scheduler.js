@@ -278,14 +278,34 @@ class SchedulerQueue {
         isMeaningfulChange = true;
       }
 
-      // Check Keyword-Only Alerts (Bonus Requirement)
+      // Check Keyword-Only Alerts: Trigger if keyword newly appeared
       if (monitor.keywordAlerts && monitor.keywordAlerts.length > 0) {
         const lowerCleaned = cleanedText.toLowerCase();
+        const lowerPrev = (previousSnapshot ? previousSnapshot.cleanedText : '').toLowerCase();
         for (const kw of monitor.keywordAlerts) {
-          if (kw && lowerCleaned.includes(kw.toLowerCase())) {
-            matchedKeywords.push(kw);
+          if (kw) {
+            const kwLower = kw.toLowerCase().trim();
+            if (lowerCleaned.includes(kwLower) && !lowerPrev.includes(kwLower)) {
+              matchedKeywords.push(kw.trim());
+            }
           }
         }
+        // Explicit keyword appearance overrides sensitivity threshold
+        if (matchedKeywords.length > 0) {
+          console.log(`[Scheduler] Keyword trigger detected: "${matchedKeywords.join(', ')}"! Overriding sensitivity threshold.`);
+          isMeaningfulChange = true;
+        }
+      }
+
+      // Check Numeric shifts: If tracking numbers and the value changed, trigger alert
+      if (
+        extractedNum !== null &&
+        previousSnapshot &&
+        previousSnapshot.extractedNumber !== null &&
+        extractedNum !== previousSnapshot.extractedNumber
+      ) {
+        console.log(`[Scheduler] Numeric shift detected (${previousSnapshot.extractedNumber} -> ${extractedNum})! Overriding sensitivity threshold.`);
+        isMeaningfulChange = true;
       }
     }
 

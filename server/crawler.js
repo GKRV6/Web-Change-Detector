@@ -177,6 +177,14 @@ export async function crawlPage({
       }
     }
 
+    // Remove script, style, noscript, svg, and template elements to prevent raw code/path noise
+    await page.evaluate(() => {
+      try {
+        const junkNodes = document.querySelectorAll('script, style, noscript, svg, template');
+        junkNodes.forEach(el => el.remove());
+      } catch (e) {}
+    });
+
     // Remove ignoreSelectors from DOM before text extraction
     if (Array.isArray(ignoreSelectors) && ignoreSelectors.length > 0) {
       await page.evaluate((selectors) => {
@@ -217,6 +225,12 @@ export async function crawlPage({
         return document.body ? (document.body.innerText || document.body.textContent || '') : '';
       });
     }
+
+    // Normalize unicode non-breaking spaces and zero-width spaces in extracted text
+    extractedText = extractedText
+      .replace(/[\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]/g, ' ')
+      .replace(/[\u200b-\u200d\u2060]/g, '')
+      .trim();
 
     // Extract numeric selector if specified
     let extractedNumericText = '';

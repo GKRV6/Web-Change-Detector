@@ -65,8 +65,10 @@ export function cleanText(rawText, customRegexStrings = []) {
     }
   }
 
-  // Normalize excessive whitespace, tabs, and newlines
+  // Normalize excessive whitespace, tabs, and unicode spaces
   cleaned = cleaned
+    .replace(/[\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]/g, ' ')
+    .replace(/[\u200b-\u200d\u2060]/g, '')
     .replace(/[ \t]+/g, ' ')
     .replace(/\n\s*\n+/g, '\n')
     .trim();
@@ -156,17 +158,34 @@ export function calculateChangePercentage(textA = '', textB = '') {
 
 /**
  * Extract number (e.g. price, stock count, rank, percentage) from string
- * Supports international currencies ($, €, £, ¥, ₹), commas, decimals, and negative numbers.
+ * Supports international currencies ($, €, £, ¥, ₹), percentages, negative numbers, and comma decimals.
  */
 export function extractNumber(text) {
   if (!text) return null;
-  // Match currency or decimal or integer: $1,999.00 or -49.99 or 42% or ₹2,499
-  const match = text.match(/[\$€£¥₹]?\s*(-?[0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]+)?|-?[0-9]+(?:\.[0-9]+)?)\s*%?/);
-  if (match && match[1]) {
-    const cleanNum = match[1].replace(/,/g, '');
+
+  // 1. High priority: explicit financial currency ($1,999.00, €49.99, £10, ¥500, ₹2,499)
+  const currencyMatch = text.match(/[\$€£¥₹]\s*(-?[0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]+)?|-?[0-9]+(?:\.[0-9]+)?)/);
+  if (currencyMatch && currencyMatch[1]) {
+    const cleanNum = currencyMatch[1].replace(/,/g, '');
+    const num = parseFloat(cleanNum);
+    if (!isNaN(num)) return num;
+  }
+
+  // 2. High priority: explicit percentage (e.g. 24.5%, -10%)
+  const pctMatch = text.match(/(-?[0-9]+(?:\.[0-9]+)?)\s*%/);
+  if (pctMatch && pctMatch[1]) {
+    const num = parseFloat(pctMatch[1]);
+    if (!isNaN(num)) return num;
+  }
+
+  // 3. Fallback: general numeric values (integers, floats, negative numbers)
+  const generalMatch = text.match(/(-?[0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]+)?|-?[0-9]+(?:\.[0-9]+)?)/);
+  if (generalMatch && generalMatch[1]) {
+    const cleanNum = generalMatch[1].replace(/,/g, '');
     const num = parseFloat(cleanNum);
     return isNaN(num) ? null : num;
   }
+
   return null;
 }
 
